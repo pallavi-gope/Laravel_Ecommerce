@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminBrandController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\IndexController;
 use App\Models\User;
@@ -39,6 +40,11 @@ Route::get('admin/profile/edit', [AdminProfileController::class, 'adminProfileEd
 Route::post('admin/profile/update', [AdminProfileController::class, 'adminProfileUpdate'])->name('admin.profile.update');
 Route::get('/admin/change/password', [AdminProfileController::class, 'adminChangePassword'])->name('admin.change.password');
 Route::post('/admin/update/password', [AdminProfileController::class, 'adminPasswordUpdate'])->name('admin.password.update');
+
+//-----------------------------------ADMIN BRAND ROUTES--------------------------------------------------//
+Route::prefix('admin/brand')->group(function(){
+    Route::get('/view', [AdminBrandController::class, 'brandView'])->name('all.brand');
+});
 
 //-----------------------------------USER ROUTES--------------------------------------------------//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
