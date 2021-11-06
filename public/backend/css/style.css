@@ -30230,5 +30230,14 @@ img.online {
     z-index: -1;
 }
 
+#preview_img {
+    margin-left: 10px;
+}
+
+#preview_img img,
+#main_thumb {
+    margin: 5px 6px;
+}
+
 
 /*# sourceMappingURL=style.css.map */

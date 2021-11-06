@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminBrandController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\IndexController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +67,7 @@ Route::prefix('/admin/subcategory')->group(function(){
     Route::get('/edit/{id}', [AdminCategoryController::class, 'subcategoryEdit'])->name('subcategory.edit');
     Route::post('/update', [AdminCategoryController::class, 'subcategoryUpdate'])->name('subcategory.update');
     Route::get('/delete/{id}', [AdminCategoryController::class, 'subcategoryDelete'])->name('subcategory.delete');
+    Route::get('/subsubcategory/ajax/{subcategory_id}', [AdminCategoryController::class, 'getSubSubcategory']);
 });
 //-----------------------------------ADMIN SUB-SUB-CATEGORY ROUTES--------------------------------------------------//
 Route::prefix('/admin/subsubcategory')->group(function(){
@@ -74,6 +76,12 @@ Route::prefix('/admin/subsubcategory')->group(function(){
     Route::get('/edit/{id}', [AdminCategoryController::class, 'subsubcategoryEdit'])->name('subsubcategory.edit');
     Route::post('/update', [AdminCategoryController::class, 'subsubcategoryUpdate'])->name('subsubcategory.update');
     Route::get('/delete/{id}', [AdminCategoryController::class, 'subsubcategoryDelete'])->name('subsubcategory.delete');
+});
+//-----------------------------------ADMIN PRODUCTS ROUTES--------------------------------------------------//
+Route::prefix('/admin/product')->group(function(){
+    Route::get('/add', [AdminProductController::class, 'productAdd'])->name('add.product');
+    Route::get('/manage', [AdminProductController::class, 'productManage'])->name('all.product');
+    Route::post('/insert', [AdminProductController::class, 'productInsert'])->name('product.insert');
 });
 //-----------------------------------USER ROUTES--------------------------------------------------//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

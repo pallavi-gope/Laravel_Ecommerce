@@ -41,9 +41,9 @@
                                         <td>{{ $subcategory['category']['category_name_en'] }}</i></td>
                                         <td>{{ $subcategory->subcategory_name_en }}</td>
                                         <td>{{ $subcategory->subcategory_name_hin }}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('subcategory.edit', $subcategory->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('subcategory.delete', $subcategory->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+                                        <td class="text-center text-nowrap">
+                                            <a href="{{ route('subcategory.edit', $subcategory->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('subcategory.delete', $subcategory->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

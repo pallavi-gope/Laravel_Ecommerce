@@ -199,4 +199,8 @@ class AdminCategoryController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    public function getSubSubcategory($subcategory_id){
+        $subcat = SubSubcategory::where('subcategory_id', $subcategory_id)->orderBy('subsubcategory_name_en', 'ASC')->get();
+        return json_encode($subcat);
+    }
 }
