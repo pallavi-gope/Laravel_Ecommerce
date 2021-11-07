@@ -22,7 +22,7 @@ $route = Route::current()->getName();
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview" class="{{ ($prefix == '/admin/brand') ? 'active' : '' }}">
+            <li class="treeview {{ ($prefix == '/admin/brand') ? 'active' : '' }}">
                 <a href="#">
                     <i data-feather="message-circle"></i>
                     <span>Brands</span>
@@ -34,7 +34,7 @@ $route = Route::current()->getName();
                     <li class="{{ ($route == 'all.brand') ? 'active' : '' }}"><a href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brand</a></li>
                 </ul>
             </li>
-            <li class="treeview" class="{{ ($prefix == '/admin/category') ? 'active' : '' }}">
+            <li class="treeview {{ ($prefix == '/admin/category') ? 'active' : '' }}">
                 <a href="#">
                     <i data-feather="file"></i><span>Category</span>
                     <span class="pull-right-container">
@@ -47,7 +47,7 @@ $route = Route::current()->getName();
                     <li class="{{ ($route == 'all.subsubcategory') ? 'active' : '' }}"><a href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>All Sub Subcategory</a></li>
                 </ul>
             </li>
-            <li class="treeview" class="{{ ($prefix == '/admin/product') ? 'active' : '' }}">
+            <li class="treeview {{ ($prefix == '/admin/product') ? 'active' : '' }}">
                 <a href="#">
                     <i data-feather="file"></i>
                     <span>Products</span>
@@ -64,21 +64,21 @@ $route = Route::current()->getName();
             <li class="treeview">
                 <a href="#">
                     <i data-feather="grid"></i>
-                    <span>Components</span>
+                    <span>Slider</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
+                <ul class="treeview-menu {{ ($prefix == '/admin/slider') ? 'active' : '' }}">
+                    <li class="{{ ($route == 'manage.slider') ? 'active' : '' }}"><a href="{{ route('manage.slider') }}"><i class="ti-more"></i> Manage Sliders</a></li>
                 </ul>
             </li>
         </ul>
     </section>
 
     <div class="sidebar-footer">
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
-        <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
+        <a href="#" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+        <a href="#" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
         <a href="{{ route('admin.logout') }}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
     </div>
 </aside>

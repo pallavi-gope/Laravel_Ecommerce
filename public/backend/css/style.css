@@ -14381,7 +14381,7 @@ Height property
 
 .content {
     min-height: 250px;
-    padding: 30px 30px 0px 30px;
+    padding: 10px 15px 0px 15px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -14482,7 +14482,7 @@ Height property
     transition: margin-left 0.3s ease-in-out;
     margin-left: 280px;
     background: #272e48;
-    min-height: 70px;
+    min-height: 60px;
     padding: 0;
     -webkit-box-shadow: 0 0 21px 0 rgba(89, 102, 122, 0.1);
     box-shadow: 0 0 21px 0 rgba(89, 102, 122, 0.1);
@@ -15394,7 +15394,7 @@ body .main-header .navbar .nav>li.search-box>a:focus {
 
 .sidebar-menu {
     list-style: none;
-    margin: 10px 10px 0;
+    margin: 0px 10px 0;
     padding: 10px;
 }
 
@@ -15901,7 +15901,7 @@ body .main-header .navbar .nav>li.search-box>a:focus {
 .sidebar-menu {
     white-space: nowrap;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .sidebar-menu>li.header {
@@ -16251,7 +16251,7 @@ body .main-header .navbar .nav>li.search-box>a:focus {
 
 .content-header {
     position: relative;
-    padding: 30px 30px 0px;
+    padding: 10px 15px 0px;
 }
 
 .content-header .page-title {
@@ -22797,7 +22797,7 @@ textarea.form-control {
     margin-bottom: 30px;
     width: 100%;
     background-color: #ffffff;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 0px;
     -webkit-transition: .5s;
     transition: .5s;
@@ -23034,7 +23034,7 @@ textarea.form-control {
 .box-header {
     color: #475f7b;
     display: block;
-    padding: 1.5rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     position: relative;
     border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     border-top-left-radius: 15px;
@@ -30239,5 +30239,7 @@ img.online {
     margin: 5px 6px;
 }
 
-
-/*# sourceMappingURL=style.css.map */
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+    padding: 0.5rem 0.3rem !important;
+}
