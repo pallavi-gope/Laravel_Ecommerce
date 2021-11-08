@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LanguageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,11 +24,12 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
-
 //-----------------------------------FRONTEND ROUTES--------------------------------------------------//
 Route::get('/', [IndexController::class, 'index']);
+Route::get('/language/hindi', [LanguageController::class, 'hindi'])->name('hindi.language');
+Route::get('/language/english', [LanguageController::class, 'english'])->name('english.language');
 
 //-----------------------------------ADMIN ROUTES--------------------------------------------------//
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Slider;
+use App\Models\Subcategory;
+use App\Models\SubSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +17,10 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $sliders = Slider::where('status',1)->orderBy('id','ASC')->limit(3)->get();
+        $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        return view('index', compact('categories', 'sliders', 'products'));
     }
     public function userLogout()
     {

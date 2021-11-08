@@ -136,7 +136,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Product Tags En</label>
-                                        <input type="text" class="form-control" required name="product_tags_en" id="product_tags_en" value="" data-role="tagsinput" placeholder="add tags" />
+                                        <input type="text" class="form-control" required name="product_tags_en" id="product_tags_en" value="lorem,ipsum" data-role="tagsinput" placeholder="add tags" />
                                         @error('product_tags_en')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -145,7 +145,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Product Tags Hin</label>
-                                        <input type="text" class="form-control" required name="product_tags_hin" id="product_tags_hin" value="" data-role="tagsinput" placeholder="add tags" />
+                                        <input type="text" class="form-control" required name="product_tags_hin" id="product_tags_hin" value="lorem,ipsum" data-role="tagsinput" placeholder="add tags" />
                                         @error('product_tags_hin')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
