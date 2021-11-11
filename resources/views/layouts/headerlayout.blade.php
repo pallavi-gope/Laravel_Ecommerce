@@ -131,7 +131,7 @@
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
                                 <li class="active dropdown yamm-fw">
-                                    <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                                    <a href="{{ url('/') }}">
                                         @if(session()->get('language') == 'hindi') घर @else Home @endif
                                     </a>
                                 </li>
@@ -152,13 +152,13 @@
                                                             @endphp
                                                             @foreach($subcategories as $subcategory)
                                                             <div class="col-xs-12 col-sm-6 col-md-3 col-menu">
-                                                                <h2 class="title">@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif</h2>
+                                                                <a href="{{ url('/products/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}"><h2 class="title">@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif</h2></a>
                                                                 <ul class="links">
                                                                     @php
                                                                     $subsubcategories = App\Models\SubSubcategory::where('subcategory_id', $subcategory->id)->orderBy('subsubcategory_name_en', 'ASC')->get();
                                                                     @endphp
                                                                     @foreach($subsubcategories as $subsubcategory)
-                                                                    <li><a href="#">@if(session()->get('language') == 'hindi') {{ $subsubcategory->subsubcategory_name_hin }} @else {{ $subsubcategory->subsubcategory_name_en }} @endif</a></li>
+                                                                    <li><a href="{{ url('/products/subsubcategory/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en) }}">@if(session()->get('language') == 'hindi') {{ $subsubcategory->subsubcategory_name_hin }} @else {{ $subsubcategory->subsubcategory_name_en }} @endif</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>

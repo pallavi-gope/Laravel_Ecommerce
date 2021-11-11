@@ -30,7 +30,10 @@ Route::get('/', function () {
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/language/hindi', [LanguageController::class, 'hindi'])->name('hindi.language');
 Route::get('/language/english', [LanguageController::class, 'english'])->name('english.language');
-
+Route::get('/product/{id}/{slug}', [IndexController::class, 'productDetails']);
+Route::get('/products/tag/{tag}', [IndexController::class, 'tagwiseProduct']);
+Route::get('/products/subcategory/{id}/{slug}', [IndexController::class, 'subcatProduct']);
+Route::get('/products/subsubcategory/{id}/{slug}', [IndexController::class, 'subsubcatProduct']);
 //-----------------------------------ADMIN ROUTES--------------------------------------------------//
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminAuthController::class, 'loginForm']);
