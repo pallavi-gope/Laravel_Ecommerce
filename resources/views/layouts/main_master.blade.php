@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
@@ -42,29 +43,248 @@
     <script type="text/javascript" src="{{ asset('frontend/js/bootstrap-select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/wow.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/scripts.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if(Session::has('message'))
-   <script>       
+    <script>
         var type = "{{ Session::get('alert-type', 'info') }}";
-        switch(type){
-            case 'info': 
+        switch (type) {
+            case 'info':
                 toastr.info("{{ Session::get('message') }}");
-            break;
-            case 'success': 
+                break;
+            case 'success':
                 toastr.success("{{ Session::get('message') }}");
-            break;
-            case 'warning': 
+                break;
+            case 'warning':
                 toastr.warning("{{ Session::get('message') }}");
-            break;
-            case 'error': 
+                break;
+            case 'error':
                 toastr.error("{{ Session::get('message') }}");
-            break;
-            case 'danger': 
+                break;
+            case 'danger':
                 toastr.danger("{{ Session::get('message') }}");
-            break;
+                break;
         }
     </script>
     @endif
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pname">Modal title</h5>
+                    <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="" id="pimage" class="img-responsive" alt="product image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="list-group">
+                                <li class="list-group-item">Price: Rs. <strong id="pprice"></strong> <span id="oldprice" style="text-decoration: line-through;"></span></li>
+                                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                                <li class="list-group-item">Stock: <span id="available" class="badge badge-pill"></span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" id="colorarea">
+                                <label for="">Choose Color</label>
+                                <select name="color" id="color" class="form-control">
+                                </select>
+                            </div>
+                            <div class="form-group" id="sizearea">
+                                <label for="">Choose Size</label>
+                                <select name="size" id="size" class="form-control">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Quantity</label>
+                                <input type="number" name="qty" id="qty" class="form-control" value="1" min="1" />
+                            </div>
+                            <input type="hidden" name="product_id" id="product_id" value="" />
+                            <div class="form-group">
+                                <button type="submit" onclick="addtocart()" name="addtocart" class="btn btn-block btn-primary"> <i class="fa fa-shopping-cart"></i> Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function productView(id) {
+            $.ajax({
+                type: 'GET',
+                url: '/product/view/modal/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    $('#pname').text(data.product.product_name_en);
+                    $('#pcode').text(data.product.product_code);
+                    $('#pcategory').text(data.product.category.category_name_en);
+                    $('#pbrand').text(data.product.brand.brand_name_en);
+                    $('#pstock').text(data.product.product_qty);
+                    $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+
+                    $('#pprice').empty();
+                    $('#oldprice').empty();
+                    if (data.product.discount_price == null) {
+                        $('#pprice').text(data.product.selling_price);
+                    } else {
+                        $('#pprice').text(data.product.discount_price);
+                        $('#oldprice').text('Rs.' + data.product.selling_price);
+                    }
+
+                    $('select[name="color"]').empty();
+                    $('select[name="size"]').empty();
+                    $.each(data.color, function(key, value) {
+                        $('select[name="color"]').append('<option value="' + value + '">' + value + '</option>');
+                        if (data.color == "") {
+                            $('#colorarea').hide();
+                        } else {
+                            $('#colorarea').show();
+                        }
+                    });
+                    $.each(data.size, function(key, value) {
+                        $('select[name="size"]').append('<option value="' + value + '">' + value + '</option>');
+                        if (data.size == "") {
+                            $('#sizearea').hide();
+                        } else {
+                            $('#sizearea').show();
+                        }
+                    });
+                    $('#available').removeClass('bg-success');
+                    $('#available').removeClass('bg-danger');
+                    if (data.product.product_qty > 0) {
+                        $('#available').text('Available');
+                        $('#available').addClass('bg-success');
+                    } else {
+                        $('#available').text('Stock Out');
+                        $('#available').addClass('bg-danger');
+                    }
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
+                }
+            });
+        }
+
+        function addtocart() {
+            var product_name = $('#pname').text();
+            var product_id = $('#product_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    product_name: product_name,
+                    product_id: product_id,
+                    color: color,
+                    size: size,
+                    quantity: quantity
+                },
+                url: "/cart/data/store/" + product_id,
+                success: function(data) {
+                    minicart();
+                    $('#close').click();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        });
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        });
+                    }
+                    //console.log(data);
+                }
+            });
+        }
+
+        function minicart() {
+            $.ajax({
+                type: 'GET',
+                url: '/products/mini/cart',
+                dataType: 'json',
+                success: function(response) {
+                    $('span[id="cartSubTotal"]').text(response.cartTotal);
+                    $('#cartQty').text(response.cartQty);
+                    var minicart = '';
+                    $.each(response.carts, function(key, value) {
+                        minicart += `<div class="cart-item product-summary">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="image"><a href=""><img src="/${value.options.image}" alt=""></a> </div>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <h3 class="name"><a href="">${value.name}</a></h3>
+                                            <div class="price">${value.price} * ${value.qty}</div>
+                                        </div>
+                                        <div class="col-xs-1 action"><button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr>`;
+                    });
+                    $('#minicart').html(minicart)
+                }
+            });
+        }
+        minicart();
+
+        function miniCartRemove(rowId){
+            $.ajax({
+                type: 'GET',
+                url: 'minicart/product/remove/'+rowId,
+                dataType: 'json',
+                success: function(data){
+                    minicart();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        });
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        });
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

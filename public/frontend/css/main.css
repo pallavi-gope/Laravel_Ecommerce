@@ -1618,7 +1618,7 @@ header {
 }
 
 .top-cart-row .dropdown-cart .lnk-cart .items-cart-inner .total-price-basket {
-    padding: 12px 12px 13px 15px;
+    padding: 12px 5px 13px 10px;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     float: left;
@@ -1657,9 +1657,9 @@ header {
     float: right;
     left: auto;
     min-width: 0;
-    padding: 24px 22px;
+    padding: 15px 10px;
     right: 0;
-    width: 230px;
+    width: 300px;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -1669,6 +1669,7 @@ header {
     font-size: 13px;
     font-family: 'Open Sans', sans-serif;
     margin-top: 0px;
+    margin-right: 24px;
 }
 
 .top-cart-row .dropdown-cart .dropdown-menu .cart-item.product-summary .name a {
@@ -1683,8 +1684,8 @@ header {
     padding: 0;
     position: relative;
     font-size: 15px;
-    right: 8px;
-    top: 8px;
+    right: 22px;
+    top: 0px;
 }
 
 .top-cart-row .dropdown-cart .dropdown-menu .cart-item.product-summary .action a {
@@ -7042,4 +7043,27 @@ header {
 .home-banner {
     margin-top: 30px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+}
+
+.bg-success {
+    background-color: green !important;
+}
+
+.bg-danger {
+    background-color: red !important;
+}
+
+#minicart {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#minicart hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#minicart .col-xs-7 {
+    padding: 0
 }

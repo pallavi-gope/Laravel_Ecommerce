@@ -21,7 +21,7 @@ class IndexController extends Controller
         $sliders = Slider::where('status', 1)->orderBy('id', 'ASC')->limit(3)->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
-        $hot_deals = Product::where('hot_deal', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
+      
         $special_offers = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $sepcial_deals = Product::where('special_deal', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $skip_category_0 = Category::skip(0)->first();
@@ -34,7 +34,7 @@ class IndexController extends Controller
         $skip_product_brand_1 = Product::where('status', 1)->where('brand_id', $skip_brand_1->id)->orderBy('id', 'DESC')->limit(6)->get();
         // return $skip_category->id;
         // die();
-        return view('index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offers', 'sepcial_deals', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_brand_1', 'skip_product_brand_1'));
+        return view('index', compact('categories', 'sliders', 'products', 'featured', 'special_offers', 'sepcial_deals', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_brand_1', 'skip_product_brand_1'));
     }
     public function userLogout()
     {
@@ -105,7 +105,10 @@ class IndexController extends Controller
         $size_hin = $products->product_size_hin;
         $product_size_hin = explode(',', $size_hin);
 
-        return view('product_details', compact('products', 'images', 'product_color_en', 'product_color_hin', 'product_size_en', 'product_size_hin'));
+        $category_id = $products->category_id;
+        $related_products = Product::where('category_id', $category_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(6)->get();
+
+        return view('product_details', compact('products', 'images', 'product_color_en', 'product_color_hin', 'product_size_en', 'product_size_hin', 'related_products'));
     }
     public function tagwiseProduct($tag)
     {
@@ -122,5 +125,20 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->where('subsubcategory_id', $id)->orderBy('id', 'DESC')->paginate(10);
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         return view('products_subsubcategory', compact('products', 'categories'));
+    }
+    public function viewProductModal($id){
+        $products = Product::with('category', 'brand')->findOrFail($id);
+
+        $color_en = $products->product_color_en;
+        $product_color_en = explode(',', $color_en);
+
+        $size_en = $products->product_size_en;
+        $product_size_en = explode(',', $size_en);
+
+        return response()->json(array(
+            'product' => $products,
+            'color' => $product_color_en,
+            'size' => $product_size_en
+        ));
     }
 }

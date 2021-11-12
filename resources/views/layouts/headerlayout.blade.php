@@ -62,7 +62,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                     <div class="logo"> <a href="{{ url('/') }}"> <img src="{{ asset('frontend/images/logo.png') }}" alt="logo"> </a> </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
+                <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
                     <div class="search-area">
                         <form>
                             <div class="control-group">
@@ -83,34 +83,22 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
+                <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
                     <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
-                                <div class="basket-item-count"><span class="count">2</span></div>
-                                <div class="total-price-basket"> <span class="lbl">cart -</span> <span class="total-price"> <span class="sign">$</span><span class="value">600.00</span> </span> </div>
+                                <div class="basket-item-count"><span class="count" id="cartQty"></span></div>
+                                <div class="total-price-basket"> <span class="lbl">cart -</span><span class="total-price"> <span class="sign">Rs.</span><span class="value" id="cartSubTotal"></span> /-</span> </div>
                             </div>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <div class="cart-item product-summary">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <div class="image"> <a href="detail.html"><img src="{{ asset('frontend/images/cart.jpg') }}" alt=""></a> </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                                            <div class="price">$600.00</div>
-                                        </div>
-                                        <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
-                                    </div>
+                                <div id="minicart">
                                 </div>
-                                <div class="clearfix"></div>
-                                <hr>
                                 <div class="clearfix cart-total">
-                                    <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$600.00</span> </div>
+                                    <div class="pull-right"><span class="text">Sub Total :</span>Rs. <span class='price' id="cartSubTotal"></span>/-</div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                                    <a href="#" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
                                 </div>
                             </li>
                         </ul>
@@ -139,7 +127,7 @@
                                 $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
                                 @endphp
                                 @foreach($categories as $category)
-                                <li class="dropdown yamm mega-menu"> 
+                                <li class="dropdown yamm mega-menu">
                                     <a href="" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@if(session()->get('language') == 'hindi') {{ $category->category_name_hin }} @else {{ $category->category_name_en }} @endif</a>
                                     <ul class="dropdown-menu container">
                                         <li>
@@ -152,7 +140,9 @@
                                                             @endphp
                                                             @foreach($subcategories as $subcategory)
                                                             <div class="col-xs-12 col-sm-6 col-md-3 col-menu">
-                                                                <a href="{{ url('/products/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}"><h2 class="title">@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif</h2></a>
+                                                                <a href="{{ url('/products/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">
+                                                                    <h2 class="title">@if(session()->get('language') == 'hindi') {{ $subcategory->subcategory_name_hin }} @else {{ $subcategory->subcategory_name_en }} @endif</h2>
+                                                                </a>
                                                                 <ul class="links">
                                                                     @php
                                                                     $subsubcategories = App\Models\SubSubcategory::where('subcategory_id', $subcategory->id)->orderBy('subsubcategory_name_en', 'ASC')->get();

@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\CartController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,11 @@ Route::get('/product/{id}/{slug}', [IndexController::class, 'productDetails']);
 Route::get('/products/tag/{tag}', [IndexController::class, 'tagwiseProduct']);
 Route::get('/products/subcategory/{id}/{slug}', [IndexController::class, 'subcatProduct']);
 Route::get('/products/subsubcategory/{id}/{slug}', [IndexController::class, 'subsubcatProduct']);
+Route::get('/product/view/modal/{id}', [IndexController::class, 'viewProductModal']);
+Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
+Route::get('/products/mini/cart', [CartController::class, 'viewMiniCart']);
+Route::get('minicart/product/remove/{rowId}', [CartController::class, 'removeMiniCart']);
+
 //-----------------------------------ADMIN ROUTES--------------------------------------------------//
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminAuthController::class, 'loginForm']);
@@ -43,7 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function ()
 Route::middleware(['auth:admin'])->group(function () {
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
         return view('admin.index');
-    })->name('dashboard');
+    })->name('dashboard')->middleware('auth:admin');
     Route::get('/admin/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
     Route::get('/admin/profile', [AdminProfileController::class, 'adminProfile'])->name('admin.profile');
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'adminProfileEdit'])->name('admin.profile.edit');
@@ -113,9 +119,9 @@ Route::prefix('/admin/slider')->group(function () {
 });
 //-----------------------------------USER ROUTES--------------------------------------------------//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    $id = Auth::user()->id;
+	$id = Auth::user()->id;
     $user = User::find($id);
-    return view('user.dashboard', compact('user'));
+    return view('dashboard',compact('user'));
 })->name('dashboard');
 Route::get('/user/logout', [IndexController::class, 'userLogout'])->name('user.logout');
 Route::get('/user/profile', [IndexController::class, 'userProfile'])->name('user.profile');
