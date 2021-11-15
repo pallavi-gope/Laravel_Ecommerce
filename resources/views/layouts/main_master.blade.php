@@ -119,6 +119,7 @@
             </div>
         </div>
     </div>
+    <!-- CART FUNCTIONALITY -->
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -242,7 +243,7 @@
                                         </div>
                                         <div class="col-xs-7">
                                             <h3 class="name"><a href="">${value.name}</a></h3>
-                                            <div class="price">${value.price} * ${value.qty}</div>
+                                            <div class="price">Rs.${value.price} * ${value.qty}</div>
                                         </div>
                                         <div class="col-xs-1 action"><button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button></div>
                                     </div>
@@ -256,12 +257,12 @@
         }
         minicart();
 
-        function miniCartRemove(rowId){
+        function miniCartRemove(rowId) {
             $.ajax({
                 type: 'GET',
-                url: 'minicart/product/remove/'+rowId,
+                url: '/minicart/product/remove/' + rowId,
                 dataType: 'json',
-                success: function(data){
+                success: function(data) {
                     minicart();
                     const Toast = Swal.mixin({
                         toast: true,
@@ -282,6 +283,196 @@
                         });
                     }
                 }
+            });
+        }
+    </script>
+    <!-- ADD TO WISHLIST FUNCTIONALITY -->
+    <script type="text/javascript">
+        function addToWishlist(product_id) {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/user/add-to-wishlist/" + product_id,
+                success: function(data) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        });
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        });
+                    }
+                }
+            });
+        }
+
+        function wishlist() {
+            $.ajax({
+                type: 'GET',
+                url: '/user/wishlist/view',
+                dataType: 'json',
+                success: function(response) {
+                    var rows = '';
+                    $.each(response, function(key, value) {
+                        rows += ` <tr>
+                                    <td class="col-md-2"><img src="/${value.product.product_thumbnail}" alt="image wishlist"></td>
+                                    <td class="col-md-7">
+                                        <div class="product-name"><a href="product/${value.product_id}/${value.product.product_slug_en}">${value.product.product_name_en}</a></div>
+                                        <div class="price">
+                                        ${value.product.discount_price == null ? `Rs. ${value.product.selling_price}` : `Rs. ${value.product.discount_price} <span>Rs. ${value.product.selling_price}</span>` }                                            
+                                        </div>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <button class="btn btn-primary icon" data-toggle="modal" data-target="#cartModal" id="${value.product_id}" onclick="productView(this.id)" type="button"> <i class="fa fa-shopping-cart"></i>&nbsp;Add to Cart </button>
+                                    </td>
+                                    <td class="col-md-1 close-btn">
+                                        <button type="button" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>`;
+                    });
+                    $('#wishlist').html(rows);
+                }
+            });
+        }
+        wishlist();
+
+        function wishlistRemove(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: '/user/wishlist/remove/' + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    wishlist();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        });
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+    <!-- CART PAGE -->
+    <script type="text/javascript">
+        function cart() {
+            $.ajax({
+                type: 'GET',
+                url: '/cart/view',
+                dataType: 'json',
+                success: function(response) {
+                    var rows = ""
+                    $.each(response.carts, function(key, value) {
+                        rows += `<tr>
+                                    <td class="col-md-2"><img src="/${value.options.image}" style="width:80px" alt="imga"></td>                                    
+                                    <td class="col-md-4">
+                                        <div class="product-name"><a href="#">${value.name}</a></div>                                        
+                                        <div class="price">Rs. ${value.price} </div>
+                                    </td>  
+                                    <td class="col-md-2">
+                                        <strong>${value.options.color}</strong>
+                                    </td> 
+                                    <td class="col-md-2">
+                                       ${value.options.size == null ? `<span>...</span>` : `<strong>${value.options.size}</strong>`}
+                                    </td> 
+                                    <td class="col-md-2">
+                                        <div class="flex">
+                                            ${value.qty > 1 ? 
+                                                `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>`
+                                                : `<button type="submit" class="btn btn-danger btn-sm" disabled="">-</button>`
+                                            }
+                                            
+                                            <input type="number" value="${value.qty}" min="1" max="200" disabled="" style="width:40px;text-align:center" />
+                                            <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)">+</button>
+                                        </div>
+                                    </td>  
+                                    <td class="col-md-2" style="white-space:nowrap">
+                                        <strong class="price">Rs. ${value.subtotal}</strong>
+                                    </td>                          
+                                    <td class="col-md-1 close-btn">
+                                        <button type="submit" class="" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>`
+                    });
+                    $('#cartpage').html(rows);
+                }
+            })
+        }
+        cart();
+        function cartRemove(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: '/cart/remove/' + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    cart();
+                    minicart();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        });
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        });
+                    }
+                }
+            });
+        }
+        function cartIncrement(rowId){
+            $.ajax({
+                type: 'GET',
+                url: '/cart/increment/'+rowId,
+                dataType: 'json',
+                success:function(response){
+                    cart();
+                    minicart();                    
+                }
+            });
+        }
+        function cartDecrement(rowId){
+            $.ajax({
+                type: 'GET',
+                url: '/cart/decrement/'+rowId,
+                dataType: 'json',
+                success: function(response){
+                    cart();
+                    minicart();
+                } 
             });
         }
     </script>

@@ -4,13 +4,13 @@
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="icon fa fa-user"></i>
+                        <li><a href="{{ route('user.profile') }}"><i class="icon fa fa-user"></i>
                                 @if(session()->get('language') == 'hindi') मेरा लेखा @else My Account @endif
                             </a></li>
-                        <li><a href="#"><i class="icon fa fa-heart"></i>
+                        <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>
                                 @if(session()->get('language') == 'hindi') इच्छा-सूची @else Wishlist @endif
                             </a></li>
-                        <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+                        <li><a href="{{ route('cart') }}"><i class="icon fa fa-shopping-cart"></i>
                                 @if(session()->get('language') == 'hindi') मेरी कार्ट @else My Cart @endif
                             </a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>

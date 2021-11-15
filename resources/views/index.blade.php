@@ -187,10 +187,12 @@ Home Easy Online shop
                                                 <div class="action">
                                                     <ul class="list-unstyled">
                                                         <li class="add-cart-button btn-group">
-                                                            <button  data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)"  class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                                                            <button data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
                                                             <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                         </li>
-                                                        <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="#" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                                        <li class="btn-group">
+                                                            <button class="btn btn-primary icon" id="{{ $product->id }}" onclick="addToWishlist(this.id)" type="button"><i class="icon fa fa-heart"></i></button>
+                                                        </li>
                                                         <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                                     </ul>
                                                 </div>
@@ -239,10 +241,12 @@ Home Easy Online shop
                                                 <div class="action">
                                                     <ul class="list-unstyled">
                                                         <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon"  data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)"  type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                            <button class="btn btn-primary icon" data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                                             <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                         </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart" href="#" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                                        <li class="btn-group">
+                                                            <button class="btn btn-primary icon" id="{{ $product->id }}" onclick="addToWishlist(this.id)" type="button"><i class="icon fa fa-heart"></i></button>
+                                                        </li>
                                                         <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                                     </ul>
                                                 </div>
@@ -312,7 +316,9 @@ Home Easy Online shop
                                                 <button class="btn btn-primary icon" data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" type="button"><i class="fa fa-shopping-cart"></i></button>
                                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                             </li>
-                                            <li class="lnk wishlist"> <a class="add-to-cart" href="#" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                            <li class="btn-group">
+                                                <button class="btn btn-primary icon" id="{{ $product->id }}" onclick="addToWishlist(this.id)" type="button"><i class="icon fa fa-heart"></i></button>
+                                            </li>
                                             <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                         </ul>
                                     </div>
@@ -361,7 +367,9 @@ Home Easy Online shop
                                                 <button class="btn btn-primary icon" data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                             </li>
-                                            <li class="lnk wishlist"> <a class="add-to-cart" href="#" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                            <li class="btn-group">
+                                                <button class="btn btn-primary icon" id="{{ $product->id }}" onclick="addToWishlist(this.id)" type="button"><i class="icon fa fa-heart"></i></button>
+                                            </li>
                                             <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                         </ul>
                                     </div>
@@ -407,10 +415,12 @@ Home Easy Online shop
                                     <div class="action">
                                         <ul class="list-unstyled">
                                             <li class="add-cart-button btn-group">
-                                                <button class="btn btn-primary icon"  data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)"  type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                <button class="btn btn-primary icon" data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                             </li>
-                                            <li class="lnk wishlist"> <a class="add-to-cart" href="#" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                            <li class="btn-group">
+                                                <button class="btn btn-primary icon" id="{{ $product->id }}" onclick="addToWishlist(this.id)" type="button"><i class="icon fa fa-heart"></i></button>
+                                            </li>
                                             <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                         </ul>
                                     </div>
@@ -456,10 +466,12 @@ Home Easy Online shop
                                     <div class="action">
                                         <ul class="list-unstyled">
                                             <li class="add-cart-button btn-group">
-                                                <button class="btn btn-primary icon"  data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)"  type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                <button class="btn btn-primary icon" data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                             </li>
-                                            <li class="lnk wishlist"> <a class="add-to-cart" href="#" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                            <li class="btn-group">
+                                                <button class="btn btn-primary icon" id="{{ $product->id }}" onclick="addToWishlist(this.id)" type="button"><i class="icon fa fa-heart"></i></button>
+                                            </li>
                                             <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                         </ul>
                                     </div>

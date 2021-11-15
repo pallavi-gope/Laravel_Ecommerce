@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2021 at 03:43 PM
+-- Generation Time: Nov 15, 2021 at 03:26 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -107,6 +107,31 @@ INSERT INTO `categories` (`id`, `category_name_en`, `category_name_hin`, `catego
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `coupon_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_discount` int(11) NOT NULL,
+  `coupon_validity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'COUP987', 40, '2021-11-30', 1, '2021-11-15 08:24:23', NULL),
+(3, 'COUN', 45, '2021-11-26', 1, '2021-11-15 08:27:19', NULL),
+(4, 'FASJ', 12, '2021-11-14', 1, '2021-11-15 08:41:55', '2021-11-15 08:47:11');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -150,7 +175,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2021_11_05_064738_create_sub_subcategories_table', 8),
 (12, '2021_11_06_071108_create_products_table', 9),
 (13, '2021_11_06_072450_create_product_images_table', 9),
-(14, '2021_11_07_134139_create_sliders_table', 10);
+(14, '2021_11_07_134139_create_sliders_table', 10),
+(15, '2021_11_15_064406_create_wishlists_table', 11),
+(16, '2021_11_15_133729_create_coupons_table', 12);
 
 -- --------------------------------------------------------
 
@@ -315,7 +342,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('YsEWRwmXTKy9G6OR55pmrqYsiZzi7zuohZeeTVzW', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRm5NTlhiSHpDTlV2aVFIM2JMN3VQS2VNcEtLUEtHcUJGdDZMVDB4RSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NDoiY2FydCI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoyOntzOjg6IgAqAGl0ZW1zIjthOjM6e3M6MzI6Ijc2YjRkYWZkMjFhOGE4NzQ5OWUxZmE5YjRjMTQ3ZTE0IjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTA6e3M6NToicm93SWQiO3M6MzI6Ijc2YjRkYWZkMjFhOGE4NzQ5OWUxZmE5YjRjMTQ3ZTE0IjtzOjI6ImlkIjtzOjI6IjEwIjtzOjM6InF0eSI7czoxOiIyIjtzOjQ6Im5hbWUiO3M6MTI6IkJlc3QgUHJpbnRlciI7czo1OiJwcmljZSI7ZDo1Nzk5O3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjI6e3M6ODoiACoAaXRlbXMiO2E6Mzp7czo1OiJpbWFnZSI7czo0ODoidXBsb2FkL3Byb2R1Y3RzL3RodW1ibmFpbHMvMTcxNTg1MzgyNzE5NTcyNy5qcGVnIjtzOjU6ImNvbG9yIjtzOjM6IlJlZCI7czo0OiJzaXplIjtzOjU6IlNtYWxsIjt9czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO31zOjc6InRheFJhdGUiO2k6MjE7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fXM6MzI6IjhkNmJlNTI5NGU4NTA4NWRmMWY5ZDRhZTljMDU5ZjQ3IjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTA6e3M6NToicm93SWQiO3M6MzI6IjhkNmJlNTI5NGU4NTA4NWRmMWY5ZDRhZTljMDU5ZjQ3IjtzOjI6ImlkIjtzOjE6IjIiO3M6MzoicXR5IjtzOjE6IjEiO3M6NDoibmFtZSI7czo0MjoiU3RyaXBlZCBNZW4gSG9vZGVkIE5lY2sgUmVkLCBCbGFjayBULVNoaXJ0IjtzOjU6InByaWNlIjtkOjM3OTtzOjY6IndlaWdodCI7ZDoxO3M6Nzoib3B0aW9ucyI7TzozOToiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW1PcHRpb25zIjoyOntzOjg6IgAqAGl0ZW1zIjthOjM6e3M6NToiaW1hZ2UiO3M6NDg6InVwbG9hZC9wcm9kdWN0cy90aHVtYm5haWxzLzE3MTU2ODM4Njk0ODMxMzguanBlZyI7czo1OiJjb2xvciI7czozOiJSZWQiO3M6NDoic2l6ZSI7czo1OiJTbWFsbCI7fXM6Mjg6IgAqAGVzY2FwZVdoZW5DYXN0aW5nVG9TdHJpbmciO2I6MDt9czo3OiJ0YXhSYXRlIjtpOjIxO3M6NDk6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBhc3NvY2lhdGVkTW9kZWwiO047czo0NjoiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGRpc2NvdW50UmF0ZSI7aTowO31zOjMyOiJiNjU1N2M0N2Q5ODMwNTQ2YTIxYjZiYmFlZjgzMDllOSI7TzozMjoiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0iOjEwOntzOjU6InJvd0lkIjtzOjMyOiJiNjU1N2M0N2Q5ODMwNTQ2YTIxYjZiYmFlZjgzMDllOSI7czoyOiJpZCI7czoxOiI0IjtzOjM6InF0eSI7czoxOiIxIjtzOjQ6Im5hbWUiO3M6MjY6IlNhbXN1bmcgTXVsdGljb2xvciBNb25pdG9yIjtzOjU6InByaWNlIjtkOjQ1MDA7czo2OiJ3ZWlnaHQiO2Q6MTtzOjc6Im9wdGlvbnMiO086Mzk6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtT3B0aW9ucyI6Mjp7czo4OiIAKgBpdGVtcyI7YTozOntzOjU6ImltYWdlIjtzOjQ4OiJ1cGxvYWQvcHJvZHVjdHMvdGh1bWJuYWlscy8xNzE1NjkxNjc4MTE1NDUxLmpwZWciO3M6NToiY29sb3IiO3M6MzoiUmVkIjtzOjQ6InNpemUiO047fXM6Mjg6IgAqAGVzY2FwZVdoZW5DYXN0aW5nVG9TdHJpbmciO2I6MDt9czo3OiJ0YXhSYXRlIjtpOjIxO3M6NDk6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBhc3NvY2lhdGVkTW9kZWwiO047czo0NjoiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGRpc2NvdW50UmF0ZSI7aTowO319czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO319fQ==', 1636727884);
+('2oK0mQhy7HhbukcCbX1c02uqoqHVx7qCe9rOWTxn', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiS0puOVQ0Z2xlYndTTFZiaXVBWG5OREZ5bXZBR0FDQ0o3aXZGRlJnOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jb3Vwb24vbWFuYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJjYXJ0IjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XENvbGxlY3Rpb24iOjI6e3M6ODoiACoAaXRlbXMiO2E6MTp7czozMjoiYjk2ZDczYTBiY2MwZGUyYmU3NGM2Y2I1NzhlMWFlMzQiO086MzI6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtIjoxMDp7czo1OiJyb3dJZCI7czozMjoiYjk2ZDczYTBiY2MwZGUyYmU3NGM2Y2I1NzhlMWFlMzQiO3M6MjoiaWQiO3M6MjoiMTIiO3M6MzoicXR5IjtzOjE6IjEiO3M6NDoibmFtZSI7czoxNzoiTG9yZW0gSXBzdW0gZG9sb3IiO3M6NToicHJpY2UiO2Q6NDk5O3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjI6e3M6ODoiACoAaXRlbXMiO2E6Mzp7czo1OiJpbWFnZSI7TjtzOjU6ImNvbG9yIjtzOjM6IlJlZCI7czo0OiJzaXplIjtzOjU6IlNtYWxsIjt9czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO31zOjc6InRheFJhdGUiO2k6MjE7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX1zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fX1zOjM6InVybCI7YTowOnt9czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1636985831),
+('R2jAhPZLjv9e74sRJIFG2jKsCpP5b71mOOX7iQ12', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoidUhudHQyR25RZjVKOURDNmJrNFFYMU4ydDhGdXFHYkFWbXJma0FScCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI2OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2FydCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkYlFGZUNqdldGOGVBcG13ZW1TZWVWTy9uZTU4RmhqT3JhbXFTMFdpZDNVRE5KdU85YzZPVXEiO3M6NDoiY2FydCI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoyOntzOjg6IgAqAGl0ZW1zIjthOjE6e3M6MzI6IjhlYTlkOTY4NWE5YzlhNGMyYzU0YmRhYWEyNmNjZjdlIjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTA6e3M6NToicm93SWQiO3M6MzI6IjhlYTlkOTY4NWE5YzlhNGMyYzU0YmRhYWEyNmNjZjdlIjtzOjI6ImlkIjtzOjI6IjExIjtzOjM6InF0eSI7aTo3O3M6NDoibmFtZSI7czoxNzoiTWVuIENhc3VhbCBUc2hpcnQiO3M6NToicHJpY2UiO2Q6NTUwO3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjI6e3M6ODoiACoAaXRlbXMiO2E6Mzp7czo1OiJpbWFnZSI7czo0ODoidXBsb2FkL3Byb2R1Y3RzL3RodW1ibmFpbHMvMTcxNTg1Mzk0MDExNTY3OC5qcGVnIjtzOjU6ImNvbG9yIjtzOjM6IlJlZCI7czo0OiJzaXplIjtzOjU6IlNtYWxsIjt9czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO31zOjc6InRheFJhdGUiO2k6MjE7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX1zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fX19', 1636980370);
 
 -- --------------------------------------------------------
 
@@ -485,6 +513,28 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
 (1, 'User', 'user@gmail.com', '9876543210', NULL, '$2y$10$bQFeCjvWF8eApmwemSeeVO/ne58FhjOramqS0Wid3UDNJuO9c6OUq', NULL, NULL, NULL, NULL, NULL, '2021-11-01 03:26:00', '2021-11-01 03:26:00');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlists`
+--
+
+CREATE TABLE `wishlists` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wishlists`
+--
+
+INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(5, 1, 4, '2021-11-15 01:50:56', NULL),
+(9, 1, 7, '2021-11-15 02:00:04', NULL);
+
 --
 -- Indexes for dumped tables
 --
@@ -506,6 +556,12 @@ ALTER TABLE `brands`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -581,6 +637,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `wishlists`
+--
+ALTER TABLE `wishlists`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -603,6 +665,12 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -612,7 +680,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -655,6 +723,12 @@ ALTER TABLE `sub_subcategories`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `wishlists`
+--
+ALTER TABLE `wishlists`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,11 +5,13 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminBrandController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminCouponController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,9 +38,24 @@ Route::get('/products/tag/{tag}', [IndexController::class, 'tagwiseProduct']);
 Route::get('/products/subcategory/{id}/{slug}', [IndexController::class, 'subcatProduct']);
 Route::get('/products/subsubcategory/{id}/{slug}', [IndexController::class, 'subsubcatProduct']);
 Route::get('/product/view/modal/{id}', [IndexController::class, 'viewProductModal']);
+
+//-----------------------------------FRONTEND CART ROUTES--------------------------------------------------//
 Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
 Route::get('/products/mini/cart', [CartController::class, 'viewMiniCart']);
 Route::get('minicart/product/remove/{rowId}', [CartController::class, 'removeMiniCart']);
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart');
+Route::get('/cart/view', [CartController::class, 'getCart']);
+Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCart']);
+Route::get('/cart/increment/{rowId}', [CartController::class, 'incrementCart']);
+Route::get('/cart/decrement/{rowId}', [CartController::class, 'decrementCart']);
+
+//-----------------------------------FRONTEND WISHLIST ROUTES--------------------------------------------------//
+Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' => 'User'], function(){
+    Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
+    Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
+    Route::get('/wishlist/view', [WishlistController::class, 'getWishlist']);
+    Route::get('/wishlist/remove/{rowId}', [WishlistController::class, 'removeWishlist']);
+});
 
 //-----------------------------------ADMIN ROUTES--------------------------------------------------//
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
@@ -117,11 +134,19 @@ Route::prefix('/admin/slider')->group(function () {
     Route::get('/active/{id}', [AdminSliderController::class, 'sliderActive'])->name('slider.active');
     Route::get('/inactive/{id}', [AdminSliderController::class, 'sliderInactive'])->name('slider.inactive');
 });
+//-----------------------------------ADMIN COUPON ROUTES--------------------------------------------------//
+Route::prefix('/admin/coupon')->group(function(){
+    Route::get('/manage', [AdminCouponController::class, 'manageCoupon'])->name('manage.coupon');
+    Route::post('/add', [AdminCouponController::class, 'couponAdd'])->name('add.coupon');
+    Route::get('/edit/{id}', [AdminCouponController::class, 'couponEdit'])->name('coupon.edit');
+    Route::post('/update', [AdminCouponController::class, 'couponUpdate'])->name('coupon.update');
+    Route::get('/delete/{id}', [AdminCouponController::class, 'couponDelete'])->name('coupon.delete');
+});
 //-----------------------------------USER ROUTES--------------------------------------------------//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
 	$id = Auth::user()->id;
     $user = User::find($id);
-    return view('dashboard',compact('user'));
+    return view('user.dashboard',compact('user'));
 })->name('dashboard');
 Route::get('/user/logout', [IndexController::class, 'userLogout'])->name('user.logout');
 Route::get('/user/profile', [IndexController::class, 'userProfile'])->name('user.profile');

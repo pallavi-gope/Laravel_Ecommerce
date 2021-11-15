@@ -6815,7 +6815,8 @@ header {
     border-top: 1px solid #ddd;
 }
 
-.body-content .my-wishlist-page .my-wishlist table tbody .product-name {
+.body-content .my-wishlist-page .my-wishlist table tbody .product-name,
+.body-content .shopping-cart table tbody .product-name {
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     padding-bottom: 6px;
@@ -7066,4 +7067,28 @@ header {
 
 #minicart .col-xs-7 {
     padding: 0
+}
+
+.swal2-popup {
+    font-size: 1.5rem !important;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex input,
+.flex button {
+    height: 30px;
+    border-radius: 0 !important;
+}
+
+.shopping-cart .product-name {
+    font-weight: bold;
+}
+
+.shopping-cart .price {
+    font-size: 17px;
 }
