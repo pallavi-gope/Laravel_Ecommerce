@@ -160,9 +160,7 @@ Home Easy Online shop
                                     <div class="products">
                                         <div class="product">
                                             <div class="product-image">
-                                                <div class="image">
-                                                    <a href="{{ url('product/'.$product->id.'/'.$product->product_slug_en) }}"><img src="{{ asset($product->product_thumbnail) }}" alt=""></a>
-                                                </div>
+                                                <div class="image"> <a href="{{ url('product/'.$product->id.'/'.$product->product_slug_en) }}"><img src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
                                                 @if($product->discount_price == NULL)
                                                 <div class="tag new"><span>New</span></div>
                                                 @else
@@ -170,11 +168,13 @@ Home Easy Online shop
                                                 $amount = $product->selling_price - $product->discount_price;
                                                 $discount = ($amount/$product->selling_price)*100;
                                                 @endphp
-                                                <div class="tag new"><span>{{ round($discount) }} %</span></div>
+                                                <div class="tag hot"><span>{{ round($discount) }} %</span></div>
                                                 @endif
                                             </div>
                                             <div class="product-info text-left">
-                                                <h3 class="name"><a href="{{ url('product/'.$product->id.'/'.$product->product_slug_en) }}">@if(session()->get('language') == 'hindi') {{ $product->product_name_hin }} @else {{ $product->product_name_en }} @endif</a></h3>
+                                                <h3 class="name"><a href="{{ url('product/'.$product->id.'/'.$product->product_slug_en) }}">
+                                                        @if(session()->get('language') =='hindi') {{ $product->product_name_hin }} @else {{ $product->product_name_en }} @endif
+                                                    </a></h3>
                                                 <div class="rating rateit-small"></div>
                                                 <div class="description"></div>
                                                 @if($product->discount_price == NULL)
@@ -187,13 +187,13 @@ Home Easy Online shop
                                                 <div class="action">
                                                     <ul class="list-unstyled">
                                                         <li class="add-cart-button btn-group">
-                                                            <button data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                                                            <button class="btn btn-primary icon" data-toggle="modal" data-target="#cartModal" id="{{ $product->id }}" onclick="productView(this.id)" type="button"><i class="fa fa-shopping-cart"></i></button>
                                                             <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                         </li>
                                                         <li class="btn-group">
                                                             <button class="btn btn-primary icon" id="{{ $product->id }}" onclick="addToWishlist(this.id)" type="button"><i class="icon fa fa-heart"></i></button>
                                                         </li>
-                                                        <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                                                        <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                                     </ul>
                                                 </div>
                                             </div>

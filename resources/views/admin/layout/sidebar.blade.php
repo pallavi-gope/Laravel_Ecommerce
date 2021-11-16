@@ -73,6 +73,20 @@ $route = Route::current()->getName();
                     <li class="{{ ($route == 'manage.coupon') ? 'active' : '' }}"><a href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage Coupons</a></li>
                 </ul>
             </li>
+              <li class="treeview {{ ($prefix == '/admin/shipping') ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Shipping</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ ($route == 'division.manage') ? 'active' : '' }}"><a href="{{ route('division.manage') }}"><i class="ti-more"></i>Ship Division</a></li>
+                    <li class="{{ ($route == 'district.manage') ? 'active' : '' }}"><a href="{{ route('district.manage') }}"><i class="ti-more"></i>Ship District</a></li>
+                    <li class="{{ ($route == 'state.manage') ? 'active' : '' }}"><a href="{{ route('state.manage') }}"><i class="ti-more"></i>Ship State</a></li>
+                </ul>
+            </li>
             <li class="header nav-small-cap">User Interface</li>
             <li class="treeview">
                 <a href="#">

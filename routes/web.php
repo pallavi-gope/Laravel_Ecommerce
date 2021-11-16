@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminCouponController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminShippingController;
 use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LanguageController;
@@ -48,6 +49,14 @@ Route::get('/cart/view', [CartController::class, 'getCart']);
 Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCart']);
 Route::get('/cart/increment/{rowId}', [CartController::class, 'incrementCart']);
 Route::get('/cart/decrement/{rowId}', [CartController::class, 'decrementCart']);
+
+//-----------------------------------FRONTEND COUPON ROUTES--------------------------------------------------//
+Route::post('/coupon-apply', [CartController::class, 'couponApply']);
+Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
+Route::get('//coupon-remove', [CartController::class, 'couponRemove']);
+
+//-----------------------------------FRONTEND CHECKOUT ROUTES--------------------------------------------------//
+Route::get('/checkout', [CartController::class, 'checkoutView'])->name('checkout');
 
 //-----------------------------------FRONTEND WISHLIST ROUTES--------------------------------------------------//
 Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' => 'User'], function(){
@@ -141,6 +150,25 @@ Route::prefix('/admin/coupon')->group(function(){
     Route::get('/edit/{id}', [AdminCouponController::class, 'couponEdit'])->name('coupon.edit');
     Route::post('/update', [AdminCouponController::class, 'couponUpdate'])->name('coupon.update');
     Route::get('/delete/{id}', [AdminCouponController::class, 'couponDelete'])->name('coupon.delete');
+});
+//-----------------------------------ADMIN SHIPPING ROUTES--------------------------------------------------//
+Route::prefix('/admin/shipping')->group(function(){
+    Route::get('/view', [AdminShippingController::class, 'divisionView'])->name('division.manage');
+    Route::post('/add', [AdminShippingController::class, 'divisionAdd'])->name('division.add');
+    Route::get('/delete/{id}', [AdminShippingController::class, 'divisionDelete'])->name('division.delete');
+    Route::get('/edit/{id}', [AdminShippingController::class, 'divisionEdit'])->name('division.edit');
+    Route::post('/update', [AdminShippingController::class, 'divisionUpdate'])->name('division.update');
+    Route::get('/district/view', [AdminShippingController::class, 'districtView'])->name('district.manage');
+    Route::post('/disctrict/add', [AdminShippingController::class, 'districtAdd'])->name('district.add');
+    Route::get('/district/delete/{id}', [AdminShippingController::class, 'districtDelete'])->name('district.delete');
+    Route::get('/district/edit/{id}', [AdminShippingController::class, 'districtEdit'])->name('district.edit');
+    Route::post('/district/update', [AdminShippingController::class, 'districtUpdate'])->name('district.update');
+    Route::get('/state/view', [AdminShippingController::class, 'stateView'])->name('state.manage');
+    Route::post('/state/add', [AdminShippingController::class, 'stateAdd'])->name('state.add');
+    Route::get('/state/edit/{id}', [AdminShippingController::class, 'stateEdit'])->name('state.edit');
+    Route::post('/state/update', [AdminShippingController::class, 'stateUpdate'])->name('state.update');
+    Route::get('/state/delete/{id}', [AdminShippingController::class, 'stateDelete'])->name('state.delete');
+    Route::get('/district/ajax/{division_id}', [AdminShippingController::class, 'getDistrict']);
 });
 //-----------------------------------USER ROUTES--------------------------------------------------//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

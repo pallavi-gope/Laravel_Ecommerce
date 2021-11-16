@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 03:26 PM
+-- Generation Time: Nov 16, 2021 at 04:19 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -177,7 +177,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2021_11_06_072450_create_product_images_table', 9),
 (14, '2021_11_07_134139_create_sliders_table', 10),
 (15, '2021_11_15_064406_create_wishlists_table', 11),
-(16, '2021_11_15_133729_create_coupons_table', 12);
+(16, '2021_11_15_133729_create_coupons_table', 12),
+(17, '2021_11_16_071600_create_shipdivisions_table', 13),
+(18, '2021_11_16_074720_create_ship_districts_table', 14),
+(19, '2021_11_16_082959_create_ship_states_table', 15);
 
 -- --------------------------------------------------------
 
@@ -342,8 +345,73 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2oK0mQhy7HhbukcCbX1c02uqoqHVx7qCe9rOWTxn', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiS0puOVQ0Z2xlYndTTFZiaXVBWG5OREZ5bXZBR0FDQ0o3aXZGRlJnOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jb3Vwb24vbWFuYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJjYXJ0IjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XENvbGxlY3Rpb24iOjI6e3M6ODoiACoAaXRlbXMiO2E6MTp7czozMjoiYjk2ZDczYTBiY2MwZGUyYmU3NGM2Y2I1NzhlMWFlMzQiO086MzI6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtIjoxMDp7czo1OiJyb3dJZCI7czozMjoiYjk2ZDczYTBiY2MwZGUyYmU3NGM2Y2I1NzhlMWFlMzQiO3M6MjoiaWQiO3M6MjoiMTIiO3M6MzoicXR5IjtzOjE6IjEiO3M6NDoibmFtZSI7czoxNzoiTG9yZW0gSXBzdW0gZG9sb3IiO3M6NToicHJpY2UiO2Q6NDk5O3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjI6e3M6ODoiACoAaXRlbXMiO2E6Mzp7czo1OiJpbWFnZSI7TjtzOjU6ImNvbG9yIjtzOjM6IlJlZCI7czo0OiJzaXplIjtzOjU6IlNtYWxsIjt9czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO31zOjc6InRheFJhdGUiO2k6MjE7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX1zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fX1zOjM6InVybCI7YTowOnt9czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1636985831),
-('R2jAhPZLjv9e74sRJIFG2jKsCpP5b71mOOX7iQ12', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoidUhudHQyR25RZjVKOURDNmJrNFFYMU4ydDhGdXFHYkFWbXJma0FScCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI2OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2FydCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkYlFGZUNqdldGOGVBcG13ZW1TZWVWTy9uZTU4RmhqT3JhbXFTMFdpZDNVRE5KdU85YzZPVXEiO3M6NDoiY2FydCI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoyOntzOjg6IgAqAGl0ZW1zIjthOjE6e3M6MzI6IjhlYTlkOTY4NWE5YzlhNGMyYzU0YmRhYWEyNmNjZjdlIjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTA6e3M6NToicm93SWQiO3M6MzI6IjhlYTlkOTY4NWE5YzlhNGMyYzU0YmRhYWEyNmNjZjdlIjtzOjI6ImlkIjtzOjI6IjExIjtzOjM6InF0eSI7aTo3O3M6NDoibmFtZSI7czoxNzoiTWVuIENhc3VhbCBUc2hpcnQiO3M6NToicHJpY2UiO2Q6NTUwO3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjI6e3M6ODoiACoAaXRlbXMiO2E6Mzp7czo1OiJpbWFnZSI7czo0ODoidXBsb2FkL3Byb2R1Y3RzL3RodW1ibmFpbHMvMTcxNTg1Mzk0MDExNTY3OC5qcGVnIjtzOjU6ImNvbG9yIjtzOjM6IlJlZCI7czo0OiJzaXplIjtzOjU6IlNtYWxsIjt9czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO31zOjc6InRheFJhdGUiO2k6MjE7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX1zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fX19', 1636980370);
+('APtmgDtZvTYv0F6pcgxDOMDjvjmcC58kB81ww5p3', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoibUlSalZXR2ZvSEpZU2NMaTFkdklxRW5xbE1HenhCYXE4OVJ5akpGSSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaGVja291dCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoiY2FydCI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoyOntzOjg6IgAqAGl0ZW1zIjthOjE6e3M6MzI6IjQ1ZmExOTdhYTM4YjMxMDE4ZmEwOGQxODNiYmU3YzRlIjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTA6e3M6NToicm93SWQiO3M6MzI6IjQ1ZmExOTdhYTM4YjMxMDE4ZmEwOGQxODNiYmU3YzRlIjtzOjI6ImlkIjtzOjI6IjEwIjtzOjM6InF0eSI7czoxOiIxIjtzOjQ6Im5hbWUiO3M6MTI6IkJlc3QgUHJpbnRlciI7czo1OiJwcmljZSI7ZDo1Nzk5O3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjI6e3M6ODoiACoAaXRlbXMiO2E6Mzp7czo1OiJpbWFnZSI7czo0ODoidXBsb2FkL3Byb2R1Y3RzL3RodW1ibmFpbHMvMTcxNTg1MzgyNzE5NTcyNy5qcGVnIjtzOjU6ImNvbG9yIjtzOjEyOiJDaG9vc2UgQ29sb3IiO3M6NDoic2l6ZSI7czoxMToiQ2hvb3NlIFNpemUiO31zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fXM6NzoidGF4UmF0ZSI7aTowO3M6NDk6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBhc3NvY2lhdGVkTW9kZWwiO047czo0NjoiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGRpc2NvdW50UmF0ZSI7aTowO319czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRiUUZlQ2p2V0Y4ZUFwbXdlbVNlZVZPL25lNThGaGpPcmFtcVMwV2lkM1VETkp1TzljNk9VcSI7fQ==', 1637074980);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shipdivisions`
+--
+
+CREATE TABLE `shipdivisions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `shipdivisions`
+--
+
+INSERT INTO `shipdivisions` (`id`, `division_name`, `created_at`, `updated_at`) VALUES
+(2, 'Jamshedpur', '2021-11-16 01:59:09', NULL),
+(3, 'Ranchi', '2021-11-16 01:59:16', '2021-11-16 02:10:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_districts`
+--
+
+CREATE TABLE `ship_districts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` bigint(20) UNSIGNED NOT NULL,
+  `district_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_districts`
+--
+
+INSERT INTO `ship_districts` (`id`, `division_id`, `district_name`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Dimna', '2021-11-16 02:34:24', '2021-11-16 02:54:17'),
+(2, 2, 'Mango', '2021-11-16 02:53:54', '2021-11-16 02:54:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_states`
+--
+
+CREATE TABLE `ship_states` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` bigint(20) UNSIGNED NOT NULL,
+  `district_id` bigint(20) UNSIGNED NOT NULL,
+  `state_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_states`
+--
+
+INSERT INTO `ship_states` (`id`, `division_id`, `district_id`, `state_name`, `created_at`, `updated_at`) VALUES
+(2, 2, 1, 'Jharkhand', '2021-11-16 04:04:15', '2021-11-16 04:21:32'),
+(3, 2, 2, 'fasdf', '2021-11-16 04:21:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -612,6 +680,24 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indexes for table `shipdivisions`
+--
+ALTER TABLE `shipdivisions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship_districts`
+--
+ALTER TABLE `ship_districts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship_states`
+--
+ALTER TABLE `ship_states`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sliders`
 --
 ALTER TABLE `sliders`
@@ -680,7 +766,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -699,6 +785,24 @@ ALTER TABLE `products`
 --
 ALTER TABLE `product_images`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `shipdivisions`
+--
+ALTER TABLE `shipdivisions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `ship_districts`
+--
+ALTER TABLE `ship_districts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `ship_states`
+--
+ALTER TABLE `ship_states`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sliders`
