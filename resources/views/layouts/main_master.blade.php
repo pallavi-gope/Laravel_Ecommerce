@@ -263,6 +263,8 @@
                 dataType: 'json',
                 success: function(data) {
                     minicart();
+                    cart();
+                    couponCalc();
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',

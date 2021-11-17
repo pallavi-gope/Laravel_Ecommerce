@@ -148,4 +148,9 @@ class AdminShippingController extends Controller
         return response()->json($district);
         exit;
     }
+    public function getStates($district_id){
+        $state = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
+        return response()->json($state);
+        exit;
+    }
 }

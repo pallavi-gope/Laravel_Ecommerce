@@ -13,7 +13,7 @@
                         <li><a href="{{ route('cart') }}"><i class="icon fa fa-shopping-cart"></i>
                                 @if(session()->get('language') == 'hindi') मेरी कार्ट @else My Cart @endif
                             </a></li>
-                        <li><a href="#"><i class="icon fa fa-check"></i>
+                        <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>
                                 @if(session()->get('language') == 'hindi') चेकआउट @else Checkout @endif
                             </a></li>
                         @auth
@@ -98,7 +98,7 @@
                                 <div class="clearfix cart-total">
                                     <div class="pull-right"><span class="text">Sub Total :</span>Rs. <span class='price' id="cartSubTotal"></span>/-</div>
                                     <div class="clearfix"></div>
-                                    <a href="#" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                                    <a href="{{ route('checkout') }}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
                                 </div>
                             </li>
                         </ul>

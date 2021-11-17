@@ -64,6 +64,9 @@ class CartController extends Controller
     }
     public function removeMiniCart($rowId){
         Cart::remove($rowId);
+        if(Session::has('coupon')){
+            Session::forget('coupon');
+        }
         return response()->json(['success' => 'Product Removed from Cart!']);
     }
     //-------------------CART PAGE------------------------------//
@@ -155,28 +158,5 @@ class CartController extends Controller
     public function couponRemove(){
         Session::forget('coupon');
         return response()->json(['success' => 'Coupon Removed Successfully!']);
-    }
-    //-------------------CHECKOUT------------------------------//
-    public function checkoutView(){
-        if(Auth::check()){
-            if(Cart::total() > 0){
-                $carts = Cart::content();
-                $cartQty = Cart::count();
-                $cartTotal = Cart::total();
-                return view('checkout_view', compact('carts', 'cartQty', 'cartTotal'));
-            }else{
-                $notification = array(
-                    'message' => 'Add At Least One Product To Cart!',
-                    'alert-type' => 'error'
-                );
-                return Redirect()->to('/')->with($notification);
-            }
-        }else{
-            $notification = array(
-                'message' => 'Please Login To Checkout!',
-                'alert-type' => 'error'
-            );
-            return Redirect()->route('login')->with($notification);
-        }
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\WishlistController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -56,14 +57,18 @@ Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
 Route::get('//coupon-remove', [CartController::class, 'couponRemove']);
 
 //-----------------------------------FRONTEND CHECKOUT ROUTES--------------------------------------------------//
-Route::get('/checkout', [CartController::class, 'checkoutView'])->name('checkout');
+Route::get('/checkout', [CheckoutController::class, 'checkoutView'])->name('checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'checkout_process'])->name('checkout_process');
 
-//-----------------------------------FRONTEND WISHLIST ROUTES--------------------------------------------------//
 Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' => 'User'], function(){
+//-----------------------------------FRONTEND WISHLIST ROUTES--------------------------------------------------//
     Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
     Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
     Route::get('/wishlist/view', [WishlistController::class, 'getWishlist']);
     Route::get('/wishlist/remove/{rowId}', [WishlistController::class, 'removeWishlist']);
+
+    //-----------------------------------FRONTEND PAYMENT ROUTES--------------------------------------------------//
+    Route::post('/stripe/pay', [CheckoutController::class, 'stripePay'])->name('stripe.pay');
 });
 
 //-----------------------------------ADMIN ROUTES--------------------------------------------------//
@@ -169,6 +174,7 @@ Route::prefix('/admin/shipping')->group(function(){
     Route::post('/state/update', [AdminShippingController::class, 'stateUpdate'])->name('state.update');
     Route::get('/state/delete/{id}', [AdminShippingController::class, 'stateDelete'])->name('state.delete');
     Route::get('/district/ajax/{division_id}', [AdminShippingController::class, 'getDistrict']);
+    Route::get('/state/ajax/{district_id}', [AdminShippingController::class, 'getStates']);
 });
 //-----------------------------------USER ROUTES--------------------------------------------------//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
