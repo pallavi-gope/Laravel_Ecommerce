@@ -20,6 +20,9 @@
                         <li><a href="{{ route('user.profile') }}"><i class="icon fa fa-user"></i>
                                 @if(session()->get('language') == 'hindi') मेरी प्रोफाइल @else My Profile @endif
                             </a></li>
+                            <li><a href="{{ route('my.orders') }}"><i class="icon fa fa-user"></i>
+                                @if(session()->get('language') == 'hindi') मेरे आर्डर @else My Orders @endif
+                            </a></li>
                         @else
                         <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
                                 @if(session()->get('language') == 'hindi') लॉग इन @else Login @endif

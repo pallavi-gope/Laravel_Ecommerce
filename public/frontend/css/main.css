@@ -6861,13 +6861,23 @@ header {
 .table>tfoot>tr>td {
     vertical-align: middle;
     border: none;
-    padding: 30px;
 }
 
 .body-content .my-wishlist-page .my-wishlist table tbody .close-btn a,
 .body-content .my-wishlist-page .my-wishlist table tbody .close-btn a:hover {
     color: #ff7878;
     font-size: 15px;
+}
+
+.order-table tr th {
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.order-table tr td {
+    font-size: 14px;
+    font-weight: 600;
 }
 
 
@@ -7091,4 +7101,9 @@ header {
 
 .shopping-cart .price {
     font-size: 17px;
+}
+
+.btn-sm {
+    padding: 2px 6px;
+    height: 25px;
 }

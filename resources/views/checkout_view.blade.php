@@ -194,7 +194,7 @@ Checkout
                                         <div class="col-md-12" style="margin-top:6px">
                                             <label for="">Cash On Delivery</label>
                                             <input type="radio" name="payment_method" value="cash" />
-                                            <img src="{{ asset('frontend/images/payments/2.png') }}" alt="">
+                                            <img src="{{ asset('frontend/images/payments/6.png') }}" alt="">
                                         </div>
                                     </div>
                                 </div>

@@ -13,6 +13,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +70,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' =
 
     //-----------------------------------FRONTEND PAYMENT ROUTES--------------------------------------------------//
     Route::post('/stripe/pay', [CheckoutController::class, 'stripePay'])->name('stripe.pay');
+    Route::post('/cash.pay', [CheckoutController::class, 'cashPay'])->name('cash.pay');
+    //-----------------------------------FRONTEND USER ROUTES--------------------------------------------------//
+    Route::get('/my-orders', [UserController::class, 'myOrders'])->name('my.orders');
+    Route::get('/order-details/{order_id}', [UserController::class, 'orderDetails']);
+    Route::get('/download-invoice/{order_id}', [UserController::class, 'downloadInvoice']);
 });
 
 //-----------------------------------ADMIN ROUTES--------------------------------------------------//

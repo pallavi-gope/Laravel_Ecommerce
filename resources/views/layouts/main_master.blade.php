@@ -424,7 +424,6 @@
             })
         }
         cart();
-
         function cartRemove(rowId) {
             $.ajax({
                 type: 'GET',
@@ -458,7 +457,6 @@
                 }
             });
         }
-
         function cartIncrement(rowId) {
             $.ajax({
                 type: 'GET',
@@ -471,7 +469,6 @@
                 }
             });
         }
-
         function cartDecrement(rowId) {
             $.ajax({
                 type: 'GET',
@@ -484,7 +481,6 @@
                 }
             });
         }
-
         function applyCoupon() {
             var coupon_name = $('#coupon_name').val();
             $.ajax({
@@ -496,7 +492,9 @@
                 url: "{{ url('/coupon-apply') }}",
                 success: function(data) {
                     couponCalc();
-                    $('#couponField').hide();                    
+                    if(data.validity == true){
+                        $('#couponField').hide();  
+                    }                                  
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -519,7 +517,6 @@
                 }
             });
         }
-
         function couponCalc() {
             $.ajax({
                 type: 'GET',
@@ -564,7 +561,6 @@
             });
         }
         couponCalc();
-
         function couponRemove() {
             $.ajax({
                 type: 'GET',

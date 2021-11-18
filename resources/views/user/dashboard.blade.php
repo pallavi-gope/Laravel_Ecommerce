@@ -1,28 +1,13 @@
 @extends('layouts.main_master')
 @section('content')
+@section('title')
+My Dashboard
+@endsection
 <div class="body-content">
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <img src="{{ (!empty($user->profile_photo_path)) ? url('upload/user_images/'.$user->profile_photo_path) : url('upload/admin_images/user.png') }}" class="card-img-top" style="border-radius: 50%;height:100%;width:100%;background-color:#fff" /> <br><br>
-                <ul class="list-group list-group-flash">
-                    <li>
-                        <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm btn-block">Home</a>
-                        <br>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.profile') }}" class="btn btn-success btn-sm btn-block">Profile Update</a>
-                        <br>
-                    </li>
-                    <li>
-                        <a href="{{ route('change.password') }}" class="btn btn-warning btn-sm btn-block">Change Password</a>
-                        <br>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">Logout</a>
-                        <br>
-                    </li>
-                </ul>
+                @include('common.user_sidebar')
             </div>
             <div class="col-md-2">
 
