@@ -11,7 +11,7 @@ My Orders
             </div>
             <div class="col-md-10">
                 <div class="card shopping-cart">
-                    <h3 class="text-left" style="margin-top:0"><b>My Orders</b></h3>
+                    <h3 class="text-left" style="margin-top:0"><b>My Cancelled Orders</b></h3>
                     <hr>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -45,23 +45,8 @@ My Orders
                                         <td>Rs.{{ $item->amount }}</td>
                                         <td>{{ $item->payment_type }}</td>
                                         <td>{{ $item->invoice_no }}</td>
-                                        <td>
-                                            @if($item->status == 'Pending')
-                                            <span class="badge badge-pill bg-primary"> {{ $item->status }}</span>
-                                            @elseif($item->status == 'Confirmed')
-                                            <span class="badge badge-pill bg-info"> {{ $item->status }}</span>
-                                            @elseif($item->status == 'Processing')
-                                            <span class="badge badge-pill bg-warning"> {{ $item->status }}</span>
-                                            @elseif($item->status == 'Picked')
-                                            <span class="badge badge-pill bg-info"> {{ $item->status }}</span>
-                                            @elseif($item->status == 'Shipped')
-                                            <span class="badge badge-pill bg-primary"> {{ $item->status }}</span>
-                                            @elseif($item->status == 'Delivered')
-                                            <span class="badge badge-pill bg-success"> {{ $item->status }}</span>
-                                            @elseif($item->status == 'Cancelled')
-                                            <span class="badge badge-pill bg-danger"> {{ $item->status }}</span>
-                                            @endif                                           
-                                           
+                                        <td>                                            
+                                            <span class="badge badge-pill bg-danger">Cancelled</span>
                                         </td>
                                         <td style="white-space: nowrap;">
                                             <a href="{{ url('/user/order-details/'.$item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> view</a>

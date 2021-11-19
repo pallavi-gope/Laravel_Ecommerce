@@ -13,7 +13,7 @@ Shipping Details
                 <div class="card shopping-cart">
                     <div class="card-title d-flex" style="display: flex;align-items:center;justify-content:space-between">
                         <h3 class="text-left" style="margin:0"><b>Order Details</b></h3>
-                        <h4><span class="text-secondary"  style="margin:0">Invoice: </span> <span class="text-primary">{{ $order->invoice_no }}</span></h4>
+                        <h4><span class="text-secondary" style="margin:0">Invoice: </span> <span class="text-primary">{{ $order->invoice_no }}</span></h4>
                     </div>
                     <hr>
                     <div class="card-body" style="background-color: #E9EBEC;">
@@ -121,7 +121,7 @@ Shipping Details
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($orderitem as $item)
+                                        @forelse($orderitem as $item)
                                         <tr>
                                             <td>
                                                 <div class="image"><a href=""><img src="{{ asset($item->product->product_thumbnail) }}" style="height:80px;width:80px" alt=""></a> </div>
@@ -148,11 +148,35 @@ Shipping Details
                                                 @endif
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                            <h4 class="text-danger">Orders Not Found!</h4>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        @if(($order->status == 'Delivered') && ($order->return_reason == NULL))
+                        <form method="POST" action="{{ route('return.order', $order->id) }}">
+                            @csrf
+                            <div class="return" style="margin-top:2rem">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Return Reason</label>
+                                            <textarea name="return_reason" id="return_reason" class="form-control" placeholder="Return Reason..." required cols="30" rows="5"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" name="submit" id="submit" class="btn btn-danger">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        @elseif($order->status == 'Cancelled')
+                        <h5 class="badge badge-pill bg-danger" style="font-size: 20px; padding:6px 15px;font-weight:400">Cancelled</h5>
+                        @else
+                         <h5 class="badge badge-pill bg-danger" style="font-size: 20px; padding:6px 15px;font-weight:400">Return Requested</h5>
+                        @endif
                     </div>
                 </div>
             </div>

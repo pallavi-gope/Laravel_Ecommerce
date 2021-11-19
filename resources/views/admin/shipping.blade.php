@@ -22,7 +22,7 @@
             <div class="col-8">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Division List</h3>
+                        <h3 class="box-title">Division List&nbsp;<span class="badge badge-pill bg-primary">{{ count($shipping) }}</span></h3>
                     </div>
                     <div class="box-body">
                         <div class="table-responsive">

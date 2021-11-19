@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminBrandController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminCouponController;
+use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminReportsController;
 use App\Http\Controllers\AdminShippingController;
 use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\IndexController;
@@ -71,10 +73,13 @@ Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' =
     //-----------------------------------FRONTEND PAYMENT ROUTES--------------------------------------------------//
     Route::post('/stripe/pay', [CheckoutController::class, 'stripePay'])->name('stripe.pay');
     Route::post('/cash.pay', [CheckoutController::class, 'cashPay'])->name('cash.pay');
-    //-----------------------------------FRONTEND USER ROUTES--------------------------------------------------//
+    //-----------------------------------FRONTEND USER ORDER ROUTES--------------------------------------------------//
     Route::get('/my-orders', [UserController::class, 'myOrders'])->name('my.orders');
     Route::get('/order-details/{order_id}', [UserController::class, 'orderDetails']);
     Route::get('/download-invoice/{order_id}', [UserController::class, 'downloadInvoice']);
+    Route::post('/return-order/{order_id}', [UserController::class, 'returnOrder'])->name('return.order');
+    Route::get('/return-orders', [UserController::class, 'returnOrders'])->name('return.order.list');
+    Route::get('/cancel-orders', [UserController::class, 'cancelOrders'])->name('cancel.orders');
 });
 
 //-----------------------------------ADMIN ROUTES--------------------------------------------------//
@@ -181,6 +186,35 @@ Route::prefix('/admin/shipping')->group(function(){
     Route::get('/state/delete/{id}', [AdminShippingController::class, 'stateDelete'])->name('state.delete');
     Route::get('/district/ajax/{division_id}', [AdminShippingController::class, 'getDistrict']);
     Route::get('/state/ajax/{district_id}', [AdminShippingController::class, 'getStates']);
+});
+//-----------------------------------ADMIN ORDER ROUTES--------------------------------------------------//
+Route::prefix('/admin/order')->group(function(){
+    Route::get('/pending', [AdminOrderController::class, 'orderPending'])->name('orders.pending');
+    Route::get('/details/{order_id}', [AdminOrderController::class, 'orderDetails'])->name('pending.order.details');
+    Route::get('/confirmed', [AdminOrderController::class, 'orderConfirmed'])->name('orders.confirmed');
+    Route::get('/processing', [AdminOrderController::class, 'orderProcessing'])->name('orders.processing');
+    Route::get('/picked', [AdminOrderController::class, 'orderPicked'])->name('orders.picked');
+    Route::get('/shipped', [AdminOrderController::class, 'orderShipped'])->name('orders.shipped');
+    Route::get('/delivered', [AdminOrderController::class, 'orderDelivered'])->name('orders.delivered');
+    Route::get('/cancelled', [AdminOrderController::class, 'orderCancelled'])->name('orders.cancelled');
+    Route::get('/pending-confirm/{order_id}', [AdminOrderController::class, 'pendingToConfirm'])->name('pending.confirm');
+    Route::get('/confirm-process/{order_id}', [AdminOrderController::class, 'confirmToProcess'])->name('confirm.process');
+    Route::get('/process-pick/{order_id}', [AdminOrderController::class, 'processToPick'])->name('process.pick');
+    Route::get('/pick-ship/{order_id}', [AdminOrderController::class, 'pickToShip'])->name('pick.ship');
+    Route::get('/ship-deliver/{order_id}', [AdminOrderController::class, 'shipToDeliver'])->name('ship.deliver');
+    Route::get('/deliver-cancel/{order_id}', [AdminOrderController::class, 'deliverToCancel'])->name('deliver.cancel');
+    Route::get('/invoice-download/{order_id}', [AdminOrderController::class, 'invoiceDownload'])->name('invoice.download');
+});
+//-----------------------------------ADMIN REPORTS ROUTES--------------------------------------------------//
+Route::prefix('/admin/reports')->group(function(){
+    Route::get('/reports', [AdminReportsController::class, 'reports'])->name('reports.all');
+    Route::post('/search-by-date', [AdminReportsController::class, 'searchByDate'])->name('search.by.date');
+    Route::post('/search-by-month', [AdminReportsController::class, 'searchByMonth'])->name('search.by.month');
+    Route::post('/search-by-year', [AdminReportsController::class, 'searchByYear'])->name('search.by.year');
+}); 
+//-----------------------------------ADMIN REPORTS ROUTES--------------------------------------------------//
+Route::prefix('/admin/users')->group(function(){
+    Route::get('/users', [AdminReportsController::class, 'users'])->name('users.all');
 });
 //-----------------------------------USER ROUTES--------------------------------------------------//
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

@@ -23,7 +23,7 @@
             <div class="col-8">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Sub Subcategory List</h3>
+                        <h3 class="box-title">Sub Subcategory List <span class="badge badge-pill bg-primary">{{ count($sub_subcategories) }}</span></h3>
                     </div>
                     <div class="box-body">
                         <div class="table-responsive">

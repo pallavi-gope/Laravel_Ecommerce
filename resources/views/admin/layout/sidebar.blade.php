@@ -73,7 +73,7 @@ $route = Route::current()->getName();
                     <li class="{{ ($route == 'manage.coupon') ? 'active' : '' }}"><a href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage Coupons</a></li>
                 </ul>
             </li>
-              <li class="treeview {{ ($prefix == '/admin/shipping') ? 'active' : '' }}">
+            <li class="treeview {{ ($prefix == '/admin/shipping') ? 'active' : '' }}">
                 <a href="#">
                     <i data-feather="file"></i>
                     <span>Shipping</span>
@@ -85,6 +85,49 @@ $route = Route::current()->getName();
                     <li class="{{ ($route == 'division.manage') ? 'active' : '' }}"><a href="{{ route('division.manage') }}"><i class="ti-more"></i>Ship Division</a></li>
                     <li class="{{ ($route == 'district.manage') ? 'active' : '' }}"><a href="{{ route('district.manage') }}"><i class="ti-more"></i>Ship District</a></li>
                     <li class="{{ ($route == 'state.manage') ? 'active' : '' }}"><a href="{{ route('state.manage') }}"><i class="ti-more"></i>Ship State</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{ ($prefix == '/admin/order') ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Orders</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ ($route == 'orders.pending') ? 'active' : '' }}"><a href="{{ route('orders.pending') }}"><i class="ti-more"></i>Pending Orders</a></li>
+                    <li class="{{ ($route == 'orders.confirmed') ? 'active' : '' }}"><a href="{{ route('orders.confirmed') }}"><i class="ti-more"></i>Confirmed Orders</a></li>
+                    <li class="{{ ($route == 'orders.processing') ? 'active' : '' }}"><a href="{{ route('orders.processing') }}"><i class="ti-more"></i>Processing Orders</a></li>
+                    <li class="{{ ($route == 'orders.picked') ? 'active' : '' }}"><a href="{{ route('orders.picked') }}"><i class="ti-more"></i>Picked Orders</a></li>
+                    <li class="{{ ($route == 'orders.shipped') ? 'active' : '' }}"><a href="{{ route('orders.shipped') }}"><i class="ti-more"></i>Shipped Orders</a></li>
+                    <li class="{{ ($route == 'orders.delivered') ? 'active' : '' }}"><a href="{{ route('orders.delivered') }}"><i class="ti-more"></i>Delivered Orders</a></li>
+                    <li class="{{ ($route == 'orders.cancelled') ? 'active' : '' }}"><a href="{{ route('orders.cancelled') }}"><i class="ti-more"></i>Cancelled Orders</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{ ($prefix == '/admin/reports') ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Reports</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ ($route == 'reports.all') ? 'active' : '' }}"><a href="{{ route('reports.all') }}"><i class="ti-more"></i>All Reports</a></li>
+
+                </ul>
+            </li>
+            <li class="treeview {{ ($prefix == '/admin/users') ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Users</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ ($route == 'users.all') ? 'active' : '' }}"><a href="{{ route('users.all') }}"><i class="ti-more"></i>All Users</a></li>
                 </ul>
             </li>
             <li class="header nav-small-cap">User Interface</li>

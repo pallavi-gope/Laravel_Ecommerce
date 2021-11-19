@@ -4,7 +4,7 @@
     <div class="content-header">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="page-title">Subcategory</h3>
+                <h3 class="page-title">Subcategory </h3>
                 <div class="d-inline-block align-items-center">
                     <nav>
                         <ol class="breadcrumb">
@@ -22,7 +22,7 @@
             <div class="col-8">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Subcategory List</h3>
+                        <h3 class="box-title">Subcategory List&nbsp;<span class="badge badge-pill bg-primary">{{ count($subcategories) }}</span></h3>
                     </div>
                     <div class="box-body">
                         <div class="table-responsive">

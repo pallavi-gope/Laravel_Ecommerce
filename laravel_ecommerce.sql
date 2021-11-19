@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2021 at 04:00 PM
+-- Generation Time: Nov 19, 2021 at 03:59 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -230,9 +230,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `state_id`, `name`, `email`, `phone`, `post_code`, `notes`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 1, 2, 'User', 'user@gmail.com', '9876543210', '121212', 'fadf', 'Stripe', 'card_1JwonJSEqHOWfRwC73P9ubLI', 'txn_3JwonLSEqHOWfRwC1xDZWNtO', 'inr', 3809.00, '61950ca0b96fb', 'EOS89768862', '17 November 2021', 'November', '2021-11-17 02:07:30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-17 08:37:30', NULL),
-(2, 1, 2, 1, 2, 'User', 'user@gmail.com', '9876543210', '121212', 'asdf', 'Stripe', 'card_1JwopMSEqHOWfRwC6SHpxFhP', 'txn_3JwopPSEqHOWfRwC0Jc2ktYy', 'inr', 929.00, '61950d1f81e38', 'EOS21818947', '17 November 2021', 'November', '2021-11-17 02:09:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-17 08:39:38', NULL),
-(3, 1, 2, 1, 2, 'User', 'user@gmail.com', '9876543210', '121212', 'asdf', 'Stripe', 'card_1Jwoq8SEqHOWfRwCfJqQoynF', 'txn_3JwoqASEqHOWfRwC04tdXhJC', 'inr', 1548.00, '61950d4f2dac8', 'EOS94178833', '17 November 2021', 'November', '2021-11-17 02:10:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-17 08:40:25', NULL),
+(1, 1, 2, 1, 2, 'User', 'user@gmail.com', '9876543210', '121212', 'fadf', 'Stripe', 'card_1JwonJSEqHOWfRwC73P9ubLI', 'txn_3JwonLSEqHOWfRwC1xDZWNtO', 'inr', 3809.00, '61950ca0b96fb', 'EOS89768862', '17 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Confirmed', '2021-11-17 08:37:30', '2021-11-19 05:43:14'),
+(2, 1, 2, 1, 2, 'User', 'user@gmail.com', '9876543210', '121212', 'asdf', 'Stripe', 'card_1JwopMSEqHOWfRwC6SHpxFhP', 'txn_3JwopPSEqHOWfRwC0Jc2ktYy', 'inr', 929.00, '61950d1f81e38', 'EOS21818947', '17 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, '19 November 2021', 'Wrong Product', 'Delivered', '2021-11-17 08:39:38', '2021-11-19 07:18:56'),
+(3, 1, 2, 1, 2, 'User', 'user@gmail.com', '9876543210', '121212', 'asdf', 'Stripe', 'card_1Jwoq8SEqHOWfRwCfJqQoynF', 'txn_3JwoqASEqHOWfRwC04tdXhJC', 'inr', 1548.00, '61950d4f2dac8', 'EOS94178833', '17 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Cancelled', '2021-11-17 08:40:25', '2021-11-19 05:30:05'),
 (4, 1, 2, 1, 2, 'User', 'user@gmail.com', '9876543210', '1231231', 'fadf', 'Stripe', 'card_1Jx6EySEqHOWfRwC4vbr51Wt', 'txn_3Jx6F1SEqHOWfRwC09FqYE64', 'inr', 550.00, '6196129785cce', 'EOS84815515', '18 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-18 03:15:16', NULL),
 (5, 1, 2, 2, 3, 'User', 'user@gmail.com', '9876543210', '12323', 'fasd', 'Cash On Delivery', 'Cash On Delivery', NULL, 'INR', 499.00, NULL, 'EOS35749219', '18 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-18 08:27:06', NULL),
 (6, 1, 2, 2, 3, 'User', 'user@gmail.com', '9876543210', '1232112', 'adfd', 'Cash On Delivery', 'Cash On Delivery', NULL, 'INR', 5799.00, NULL, 'EOS74540608', '18 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-18 08:29:44', NULL);
@@ -433,7 +433,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('mRTeFDbroY3nhpWDnXCQ94rlp8GbwUDu2Bs6VhDp', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiT0hsY2UwbndhSGNCSDRYdzZKY0ZzZnB6OE5TR05Tc2YwQjRmMkUwZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC91c2VyL2Rvd25sb2FkLWludm9pY2UvNiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoiY2FydCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGJRRmVDanZXRjhlQXBtd2VtU2VlVk8vbmU1OEZoak9yYW1xUzBXaWQzVUROSnVPOWM2T1VxIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRiUUZlQ2p2V0Y4ZUFwbXdlbVNlZVZPL25lNThGaGpPcmFtcVMwV2lkM1VETkp1TzljNk9VcSI7fQ==', 1637246510);
+('MsgDYtUOFSLXLMntmNGLYvxHkC57DeWODXwbapo1', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUGp1VmR4UHRjM0ZyMUcxeFZGQ1NWeW9pQkpLajNzRjIySmdYdTNqTiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGJRRmVDanZXRjhlQXBtd2VtU2VlVk8vbmU1OEZoak9yYW1xUzBXaWQzVUROSnVPOWM2T1VxIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRiUUZlQ2p2V0Y4ZUFwbXdlbVNlZVZPL25lNThGaGpPcmFtcVMwV2lkM1VETkp1TzljNk9VcSI7czozOiJ1cmwiO2E6MDp7fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1637333841);
 
 -- --------------------------------------------------------
 
@@ -651,6 +651,7 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_seen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -666,8 +667,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'User', 'user@gmail.com', '9876543210', NULL, '$2y$10$bQFeCjvWF8eApmwemSeeVO/ne58FhjOramqS0Wid3UDNJuO9c6OUq', NULL, NULL, NULL, NULL, '20211118120855.png', '2021-11-01 03:26:00', '2021-11-18 06:38:55');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `last_seen`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
+(1, 'User', 'user@gmail.com', '9876543210', '2021-11-19 14:46:02', NULL, '$2y$10$bQFeCjvWF8eApmwemSeeVO/ne58FhjOramqS0Wid3UDNJuO9c6OUq', NULL, NULL, NULL, NULL, '20211118120855.png', '2021-11-01 03:26:00', '2021-11-19 09:16:02');
 
 -- --------------------------------------------------------
 

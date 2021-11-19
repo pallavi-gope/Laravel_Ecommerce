@@ -22,7 +22,7 @@
             <div class="col-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Product List</h3>
+                        <h3 class="box-title">Product List <span class="badge badge-pill bg-primary">{{ count($products) }}</span></h3>
                     </div>
                     <div class="box-body">
                         <div class="table-responsive">

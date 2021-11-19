@@ -7107,3 +7107,122 @@ header {
     padding: 2px 6px;
     height: 25px;
 }
+
+.bg-primary {
+    background-color: #0F5EF7 !important;
+    color: #ffffff;
+}
+
+.bg-primary-light {
+    background-color: #ffe399 !important;
+    color: #0F5EF7;
+}
+
+.bg-info {
+    background-color: #7a15f7 !important;
+    color: #ffffff;
+}
+
+.bg-info-light {
+    background-color: #eadafe !important;
+    color: #7a15f7;
+}
+
+.bg-success {
+    background-color: #00BC8B !important;
+    color: #ffffff;
+}
+
+.bg-success-light {
+    background-color: #89ffe0 !important;
+    color: #00BC8B;
+}
+
+.bg-danger {
+    background-color: #EF3737 !important;
+    color: #ffffff;
+}
+
+.bg-danger-light {
+    background-color: #f8adad !important;
+    color: #EF3737;
+}
+
+.bg-warning {
+    background-color: #FFB800 !important;
+    color: #ffffff;
+}
+
+.bg-warning-light {
+    background-color: #a3c1fc !important;
+    color: #FFB800;
+}
+
+.bg-secondary {
+    background-color: #475F7B !important;
+    color: #ffffff;
+}
+
+.bg-secondary-light {
+    background-color: #d8e0e9 !important;
+    color: #475F7B;
+}
+
+.bg-primary-light {
+    background-color: #FFB800 !important;
+    color: #ffffff;
+}
+
+.bg-primary-light .text-primary {
+    color: #ffffff !important;
+}
+
+.bg-info-light {
+    background-color: #7a15f7 !important;
+    color: #ffffff;
+}
+
+.bg-info-light .text-info {
+    color: #ffffff !important;
+}
+
+.bg-success-light {
+    background-color: #00BC8B !important;
+    color: #ffffff;
+}
+
+.bg-success-light .text-success {
+    color: #ffffff !important;
+}
+
+.bg-danger-light {
+    background-color: #EF3737 !important;
+    color: #ffffff;
+}
+
+.bg-danger-light .text-danger {
+    color: #ffffff !important;
+}
+
+.bg-warning-light {
+    background-color: #0F5EF7 !important;
+    color: #ffffff;
+}
+
+.bg-warning-light .text-warning {
+    color: #ffffff !important;
+}
+
+.bg-secondary-light {
+    background-color: #475F7B !important;
+    color: #ffffff;
+}
+
+.user-sidebar-links li {
+    margin-bottom: 6px;
+}
+
+.user-sidebar-links li a {
+    padding: 6px;
+    height: 35px;
+}
