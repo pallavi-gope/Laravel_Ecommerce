@@ -8,23 +8,22 @@ $route = Route::current()->getName();
             <div class="ulogo">
                 <a href="index.html">
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('backend/images/logo-dark.png') }}" alt="">
-                        <h3><b>Sunny</b> Admin</h3>
+                        <!-- <img src="{{ asset('backend/images/logo-dark.png') }}" alt=""> -->
+                        <h3><b>Easy Shop</b> Admin</h3>
                     </div>
                 </a>
             </div>
         </div>
-        <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="{{ ($route == 'dashboard') ? 'active' : '' }}">
                 <a href="{{ url('/admin/dashboard') }}">
-                    <i data-feather="pie-chart"></i>
+                    <i class="fa fa-pie-chart"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="treeview {{ ($prefix == '/admin/brand') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i class="fa fa-copyright"></i>
                     <span>Brands</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -36,7 +35,7 @@ $route = Route::current()->getName();
             </li>
             <li class="treeview {{ ($prefix == '/admin/category') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="file"></i><span>Category</span>
+                    <i class="fa fa-signal"></i><span>Category</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -49,7 +48,7 @@ $route = Route::current()->getName();
             </li>
             <li class="treeview {{ ($prefix == '/admin/product') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="file"></i>
+                    <i class="fa fa-shopping-bag"></i>
                     <span>Products</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -62,20 +61,19 @@ $route = Route::current()->getName();
             </li>
             <li class="treeview {{ ($prefix == '/admin/coupon') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="file"></i>
+                    <i class="fa fa-gift"></i>
                     <span>Coupons</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ ($route == 'add.coupon') ? 'active' : '' }}"><a href="{{ route('add.coupon') }}"><i class="ti-more"></i>Add Coupon</a></li>
                     <li class="{{ ($route == 'manage.coupon') ? 'active' : '' }}"><a href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage Coupons</a></li>
                 </ul>
             </li>
             <li class="treeview {{ ($prefix == '/admin/shipping') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="file"></i>
+                    <i class="fa fa-area-chart"></i>
                     <span>Shipping</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -89,7 +87,7 @@ $route = Route::current()->getName();
             </li>
             <li class="treeview {{ ($prefix == '/admin/order') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="file"></i>
+                    <i class="fa fa-cart-plus"></i>
                     <span>Orders</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -107,7 +105,7 @@ $route = Route::current()->getName();
             </li>
             <li class="treeview {{ ($prefix == '/admin/reports') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="file"></i>
+                    <i class="fa fa-file-text"></i>
                     <span>Reports</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -120,7 +118,7 @@ $route = Route::current()->getName();
             </li>
             <li class="treeview {{ ($prefix == '/admin/users') ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="file"></i>
+                    <i class="fa fa-users"></i>
                     <span>Users</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -133,7 +131,7 @@ $route = Route::current()->getName();
             <li class="header nav-small-cap">User Interface</li>
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="grid"></i>
+                    <i class="fa fa-th-large"></i>
                     <span>Slider</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
@@ -142,6 +140,25 @@ $route = Route::current()->getName();
                 <ul class="treeview-menu {{ ($prefix == '/admin/slider') ? 'active' : '' }}">
                     <li class="{{ ($route == 'manage.slider') ? 'active' : '' }}"><a href="{{ route('manage.slider') }}"><i class="ti-more"></i> Manage Sliders</a></li>
                 </ul>
+            </li>
+            <li class="header nav-small-cap">Marketing Tools</li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-line-chart"></i> <span>Keyword Research</span> </a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-bar-chart"></i> <span>PPC optimization</span> </a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-star-o"></i> <span>Canva</span> </a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-vimeo"></i> <span>Vimeo</span> </a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-facebook"></i> <span>Facebook</span> </a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-youtube-play"></i> <span>Youtube</span> </a>
             </li>
         </ul>
     </section>

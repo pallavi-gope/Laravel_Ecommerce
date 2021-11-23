@@ -4,53 +4,28 @@
             <ul class="nav">
                 <li class="btn-group nav-item">
                     <a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" data-toggle="push-menu" role="button">
-                        <i class="nav-link-icon mdi mdi-menu"></i>
+                        <i class="nav-link-icon fa fa-bars"></i>
                     </a>
                 </li>
                 <li class="btn-group nav-item">
                     <a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="Full Screen">
-                        <i class="nav-link-icon mdi mdi-crop-free"></i>
+                        <i class="nav-link-icon fa fa-expand"></i>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="navbar-custom-menu r-side">
-            <ul class="nav navbar-nav">               
-                <li class="dropdown notifications-menu">
-                    <a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown" title="Notifications">
-                        <i class="ti-bell"></i>
-                    </a>
-                    <ul class="dropdown-menu animated bounceIn">
-                        <li class="header">
-                            <div class="p-20">
-                                <div class="flexbox">
-                                    <div>
-                                        <h4 class="mb-0 mt-0">Notifications</h4>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-danger">Clear All</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <ul class="menu sm-scrol">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <a href="#">View all</a>
-                        </li>
-                    </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    @if(Session::has('light-skin'))
+                    <a type="button" class="btn btn-primary" onclick="changeColor()" id="colortoggler" style="color:#fff !important">Dark Mode</a>
+                    @else
+                    <a type="button" class="btn btn-primary" onclick="changeColor()" id="colortoggler" style="color:#fff">Light Mode</a>
+                    @endif
                 </li>
                 @php
-                    $adminrow = DB::table('admins')->first()
+                $adminrow = DB::table('admins')->first()
                 @endphp
-                <!-- User Account-->
                 <li class="dropdown user user-menu">
                     <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown" title="User">
                         <img src="{{ (!empty($adminrow->profile_photo_path)) ? url('upload/admin_images/'.$adminrow->profile_photo_path) : url('upload/admin_images/user.png') }}" alt="">

@@ -29,7 +29,7 @@
                         <form method="POST" action="{{ route('admin.password.update') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <h5>Current Password<span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <h5>New Password <span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <h5>Confirm Password <span class="text-danger">*</span></h5>
                                         <div class="controls">

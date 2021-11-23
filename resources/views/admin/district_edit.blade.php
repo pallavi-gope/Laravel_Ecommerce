@@ -19,7 +19,7 @@
     </div>
     <section class="content">
         <div class="row">
-            <div class="col-6 offset-3">
+            <div class="col-md-6 offset-md-3">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Update District</h3>

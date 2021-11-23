@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminSliderController extends Controller
@@ -65,8 +66,8 @@ class AdminSliderController extends Controller
                 'slider' => $save_url_update,
                 'updated_at' => Carbon::now()
             ]);
-        }else{
-            
+        } else {
+
             Slider::findOrFail($slider_id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -113,5 +114,17 @@ class AdminSliderController extends Controller
             'alert-type' => 'warning'
         );
         return Redirect()->back()->with($notification);
+    }
+    public function setLight()
+    {
+        Session::put('light-skin', ['skin' => 'light']);
+        return response()->json(['light-skin']);
+    }
+    public function setDark()
+    {
+        if (Session::has('light-skin')) {
+            Session::forget('light-skin');
+        }
+        return response()->json(['dark-skin']);
     }
 }

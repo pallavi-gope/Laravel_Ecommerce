@@ -99,7 +99,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/change/password', [AdminProfileController::class, 'adminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/password', [AdminProfileController::class, 'adminPasswordUpdate'])->name('admin.password.update');
 });
-
+Route::get('/set-light-skin', [AdminSliderController::class, 'setLight']);
+Route::get('/set-dark-skin', [AdminSliderController::class, 'setDark']);
 //-----------------------------------ADMIN BRAND ROUTES--------------------------------------------------//
 Route::prefix('/admin/brand')->group(function () {
     Route::get('/view', [AdminBrandController::class, 'brandView'])->name('all.brand');

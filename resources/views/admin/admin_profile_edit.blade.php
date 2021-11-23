@@ -29,7 +29,7 @@
                         <form method="POST" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <h5>Admin User Name<span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <h5>Admin Email <span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <h5>Admin Profile Photo <span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <img id="show_image" src="{{ (!empty($adminData->profile_photo_path)) ? url('upload/admin_images/'.$adminData->profile_photo_path) : url('upload/admin_images/user.png') }}" style="width:100px;height:100px" alt="" />
                                     </div>

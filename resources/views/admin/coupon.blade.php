@@ -19,7 +19,7 @@
     </div>
     <section class="content">
         <div class="row">
-            <div class="col-8">
+            <div class="col-md-8">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Coupons List &nbsp;<span class="badge badge-pill bg-primary">{{ count($coupons) }}</span></h3>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Add New Coupon</h3>

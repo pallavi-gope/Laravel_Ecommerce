@@ -4,5 +4,5 @@
            
         </ul>
     </div>
-    &copy; 2021 <a href="#">Easy Shop</a>. All Rights Reserved.
+    &copy; 2021 <a href="#">Tawg Creatology</a>. All Rights Reserved.
 </footer>

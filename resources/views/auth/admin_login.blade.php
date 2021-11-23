@@ -12,22 +12,20 @@
     <link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/skin_color.css') }}">
-
 </head>
 
-<body class="hold-transition theme-primary bg-gradient-primary">
-
+<body class="hold-transition dark-skin">
     <div class="container h-p100">
         <div class="row align-items-center justify-content-md-center h-p100">
-
             <div class="col-12">
                 <div class="row justify-content-center no-gutters">
                     <div class="col-lg-4 col-md-5 col-12">
-                        <div class="content-top-agile p-10">
-                            <h2 class="text-white">Get started with Us</h2>
-                            <p class="text-white-50">Sign in to start your session</p>
-                        </div>
-                        <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
+                        <div class="p-30 rounded30 box-shadowed box">
+                            <div class="content-top-agile">
+                                <h2 class="text-white">Get started with Us</h2>
+                                <p class="text-white-50">Sign in to start your session</p>
+                            </div>
+                            <br>
                             @if (session('status'))
                             <div class="mb-4 font-medium text-sm text-green-600">
                                 {{ session('status') }}
@@ -61,7 +59,7 @@
                                     <!-- /.col -->
                                     <div class="col-6">
                                         <div class="fog-pwd text-right">
-                                            <a href="{{ route('password.request') }}" class="text-white hover-info"><i class="ion ion-locked"></i> Forgot Password?</a><br>
+                                            <a href="#" class="text-white hover-info"><i class="ion ion-locked"></i> Forgot Password?</a><br>
                                         </div>
                                     </div>
                                     <!-- /.col -->
@@ -72,19 +70,6 @@
                                 </div>
                             </form>
 
-                            <div class="text-center text-white">
-                                <p class="mt-20">- Sign With -</p>
-                                <p class="gap-items-2 mb-20">
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-facebook"></i></a>
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-twitter"></i></a>
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-google-plus"></i></a>
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-instagram"></i></a>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <p class="mt-15 mb-0 text-white">Don't have an account? <a href="auth_register.html" class="text-info ml-5">Sign Up</a></p>
-                            </div>
                         </div>
                     </div>
                 </div>

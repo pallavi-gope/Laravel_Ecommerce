@@ -79,37 +79,10 @@ Waves
 /****************************/
 
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
-
-/*Social Media Colors*/
-
-
-/*Theme Colors*/
-
-
-/*Lite color*/
-
-
-/*Theme Colors For Dark*/
-
-
-/*---reset---*/
-
-
-/*Body*/
-
 @import url(color_theme.css);
-@import url(style_rtl.css);
 @import url(../../assets/icons/font-awesome/css/font-awesome.css);
-@import url(../../assets/icons/Ionicons/css/ionicons.css);
 @import url(../../assets/icons/themify-icons/themify-icons.css);
-@import url(../../assets/icons/linea-icons/linea.css);
-@import url(../../assets/icons/glyphicons/glyphicon.css);
-@import url(../../assets/icons/flag-icon-css/css/flag-icon.css);
 @import url(../../assets/icons/material-design-iconic-font/css/materialdesignicons.css);
-@import url(../../assets/icons/simple-line-icons/css/simple-line-icons.css);
-@import url(../../assets/icons/cryptocoins-master/cryptocoins.css);
-@import url(../../assets/icons/weather-icons/css/weather-icons.min.css);
-@import url(../../assets/icons/iconsmind/style.css);
 @import url(../../assets/vendor_components/animate/animate.css);
 html {
     height: 100%;
@@ -122,6 +95,22 @@ body {
 
 body.layout-boxed {
     height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(26, 35, 58, 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(39, 46, 72, 0.7);
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: rgb(39, 46, 72, 0.7);
 }
 
 .wrapper {
@@ -14481,7 +14470,7 @@ Height property
     -webkit-transition: margin-left 0.3s ease-in-out;
     transition: margin-left 0.3s ease-in-out;
     margin-left: 280px;
-    background: #272e48;
+    /* background: #272e48; */
     min-height: 60px;
     padding: 0;
     -webkit-box-shadow: 0 0 21px 0 rgba(89, 102, 122, 0.1);
@@ -14810,6 +14799,13 @@ Height property
 
 .navbar-custom-menu>.navbar-nav>li {
     position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.theme-select {
+    padding: 6px;
+    height: 35px !important;
 }
 
 .navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
@@ -15398,6 +15394,12 @@ body .main-header .navbar .nav>li.search-box>a:focus {
     padding: 10px;
 }
 
+@media(max-width:768px) {
+    .sidebar-menu {
+        margin: 0px 10px 50px;
+    }
+}
+
 .sidebar-menu>li {
     position: relative;
     margin: 0;
@@ -15455,7 +15457,7 @@ body .main-header .navbar .nav>li.search-box>a:focus {
 .sidebar-menu>li>a>i {
     width: 35px;
     line-height: 20px;
-    font-size: 14px;
+    font-size: 20px;
     display: inline-block;
     vertical-align: middle;
     color: #475f7b;
@@ -15694,9 +15696,9 @@ body .main-header .navbar .nav>li.search-box>a:focus {
 
 .user-profile .ulogo {
     text-align: center;
-    padding: 10px 0 12px;
+    padding: 10px 0 0px;
     font-size: 1.286rem;
-    min-height: 70px;
+    min-height: 60px;
 }
 
 .user-profile .ulogo h3 {
@@ -15898,9 +15900,13 @@ body .main-header .navbar .nav>li.search-box>a:focus {
     overflow: hidden;
 }
 
+.sidebar {
+    overflow-y: auto !important;
+}
+
 .sidebar-menu {
     white-space: nowrap;
-    overflow: hidden;
+    overflow-y: auto;
     border-radius: 5px;
 }
 
@@ -16412,8 +16418,6 @@ body .main-header .navbar .nav>li.search-box>a:focus {
         float: left;
     }
     .navbar-custom-menu .navbar-nav>li>a {
-        padding-top: 15px;
-        padding-bottom: 15px;
         line-height: 20px;
     }
 }
@@ -19509,7 +19513,7 @@ dt-buttons .dt-button {
     display: inline-block;
 }
 
-dt-buttons .dt-button:hover {
+.dt-buttons .dt-button:hover {
     background: #475f7b;
 }
 
@@ -19584,6 +19588,19 @@ table.dataTable thead .sorting_desc_disabled {
 
 .tablesaw-bar .btn-group label {
     color: #737373;
+}
+
+@media(max-width:768px) {
+    .dataTables_filter {
+        float: left;
+        padding-top: 5px;
+    }
+    .example1_wrapper .col-md-6 {
+        padding-left: 0;
+    }
+    .dataTables_wrapper .dataTables_paginate {
+        float: left;
+    }
 }
 
 tfoot input {
@@ -22451,10 +22468,10 @@ input[type="color"] {
 }
 
 .form-control {
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: none;
     border-color: #b3c5d9;
-    height: auto;
+    height: 35px;
 }
 
 .form-control:focus {
@@ -27783,7 +27800,7 @@ td .label {
     border: 1px solid transparent;
     cursor: pointer;
     line-height: inherit;
-    padding: 8px 16px;
+    padding: 4px 16px;
     font-size: 1.1rem;
     -webkit-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
